@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    class APP extends React.Component {
+        constructor (props) {
+            super (props);
+            this.state = {
+                isLogin: false,
+                welcome: '请先登录～',
+                films: ['大话西游', '月光宝盒', '西游记', '三国演义']
+            }
+        }
+
+        async handleLogin () {
+            console.log('--login---')
+            this.setState({
+                isLogin: !this.state.isLogin,
+                welcome: !this.state.isLogin ? '欢迎回来～' : '请先登录～'
+            })
+        }
+
+        render() {
+            const { isLogin, welcome, films } = this.state
+            const displayValue = isLogin ? 'block' : 'none'
+            return (
+            <div>
+                { /*---JSX实现v-show效果---*/ }
+                <h2 style={{display: displayValue}}>您已登录</h2>
+                <h2>{ welcome }</h2>
+                <button onClick={() => this.handleLogin()}>{isLogin ? '退出' : '登录'}</button>
+                { isLogin && <h2>你好啊，李银河</h2> }
+                <ul>
+                {films.filter((item) => item.length > 3)
+                    .slice(0, 2)
+                    .map((item, index) => {
+                    return <li key={index}>{index+1}{item}</li>
+                })}
+                </ul>
+            </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<APP />, document.getElementById('app'))
+  </script>
+</body>
+</html>

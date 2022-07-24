@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    // 封装公共方法
+    function getSizeImg (imgUrl, size) {
+        return imgUrl + `param=${size}x${size}`
+    }
+    // 封装APP组件
+    class APP extends React.Component {
+        constructor (props) {
+            super (props);
+            this.state = {
+                title: '标题',
+                imgUrl: 'http://p3.music.126.net/Nb-I-kDx0mNn3e7RpA7i4w==/109951164080264703.jpg?',
+                link: 'https://juejin.cn/post/7123178292865155102',
+                active: true
+            }
+            this.handleClickB = this.handleClick.bind(this)
+        }
+
+        handleClick () {
+            console.log('---handleClick----', this, event)
+        }
+
+        btnClick = () => {
+            console.log('---btnClick----', this)
+        }
+
+        eventClick (event) {
+            console.log('----eventClick---', this, event)
+        }
+
+        render() {
+            const { title, imgUrl, link, active } = this.state
+            return (
+            <div>
+                {/* 方案一：显示绑定 -- bind绑定this */}
+                <h2>绑定方案1</h2>
+                <p onClick={this.handleClick.bind(this)}>Button11</p>
+                <p onClick={this.handleClickB} style={{color: 'red'}}>eventBtn</p>
+                <p onClick={this.eventClick.bind(this)} style={{color: 'red'}}>eventBtn</p>
+
+                {/* 方案二：定义函数时使用箭头函数 */}
+                {/* ES6中给对象增加属性 class fields */}
+                <h2>绑定方案2</h2>
+                <p onClick={this.btnClick}>Button21</p>
+
+                <h2>绑定方案3</h2>
+                {/* 方案三：直接传入一个箭头函数，在箭头函数中调用需要执行的函数 */}
+                <p onClick={(e) => { this.eventClick(e) }} style={{color: 'red'}}>eventBtn</p>
+
+                <h2 title={title}>title</h2>
+                {/* vue 中实现同功能需要使用过滤器filter */}
+                <img src={getSizeImg(imgUrl, 80)} alt="" />
+                <br />
+                <a href={link}>尤雨溪对未来前端趋势分享: 笔记</a>
+                <div className="box title">div元素</div>
+                {/* 绑定class，动态绑定class只能通过js */}
+                <div className={'box title ' + (active ? 'active' : '')}>div元素2222</div>
+                <label htmlFor=""></label>
+                {/* 绑定style，动态绑定class只能通过js */}
+                <div style={{color: 'red', fontSize: '28px'}}>style属性绑定</div>
+            </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<APP />, document.getElementById('app'))
+  </script>
+</body>
+</html>
