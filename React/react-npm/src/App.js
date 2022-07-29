@@ -3,62 +3,62 @@ export default class App extends Component {
   constructor(props) {
     super()
     this.state = {
-        count: 0
+      count: 0,
+      isShow: false,
     }
   }
-  render() { // 调用render函数时，检查this.state和this.props的变化并返回以下类型之一
-    // return ( // 1.div原生标签 or 自定义组件
-    //   <div>
-    //     <h2>类组件定义</h2>
-    //     <p>1. 组件名称必须以大写开头，小写视为原生标签</p>
-    //     <p>2. 类组件必须继承自react.Component</p>
-    //     <p>3. render()函数是唯一必须实现的方法</p>
-    //     <p>4. constructor初始化组数据，可选实现</p>
-    //     <p>5. super()方法基于类继承，在constructor中调用</p>
-    //     <p>6. this.state维护的是组件内部数据</p>
-    //     <p>{ this.state.count }</p>
-    //     <button onClick={(e) => this.increment(e)}>+</button>
-    //   </div>
-    // )
-    // return ( // 2. 数组或fragments
-    //   [
-    //     <div key='head'>header</div>,
-    //     <div key='body'>body</div>,
-    //     <div key='foot'>footer</div>
-    //   ]
-    // )
-    // 3. portals -- 渲染子节点到不同DOM中
-    // return ( // 4. 字符串或数值 -- 渲染为文本节点
-    //   'text'
-    // )
-    return ( // 5. 布尔类型或null -- 什么都不渲染
-      true
+  componentDidMount() {
+    console.log("APP-mount生命周期---首次渲染")
+  }
+  componentDidUpdate() {
+    console.log("APP-update生命周期---更新渲染")
+  }
+  componentWillUnmount() {
+    console.log("APP-unmount生命周期--移除DOM")
+  }
+  render() {
+    const { count, isShow } = this.state
+    console.log('APP--执行了render方法')
+    return (
+      <div>
+        <h2>组件生命周期</h2>
+        <p>{count}</p>
+        <button onClick={(e) => this.increment(e)}>+</button>
+        <hr />
+        <button onClick={(e) => this.changeShow(e)}>change</button>
+        {isShow && <ComponentA />}
+        {/* v-show只更新APP */}
+        <ComponentA style={{ display: isShow ? "block" : "none" }} />
+      </div>
     )
   }
 
   increment(e) {
-    console.log(e, '++++')
     this.setState({
-        count: this.state.count + 1
+      count: this.state.count + 1,
+    })
+  }
+  changeShow(e) {
+    this.setState({
+      isShow: !this.state.isShow,
     })
   }
 }
 
-// export default function App() {
-//   let count = 0
-//   const increment = () => {
-//     console.log('+++++', count)
-//     count++
-//   }
-//   const component = <div>
-//     <h2> 函数式组件定义 </h2>
-//     <p>1. 普通函数</p>
-//     <p>2. 组件名称必须大写字符开头</p>
-//     <p>3. 没有this对象</p>
-//     <p>4. 没有内部状态</p>
-//     <p>5. hooks可以使函数维护内部状态</p>
-//     <p>{ count }</p>
-//     <button onClick={increment}>+</button>
-//   </div>
-//   return component
-// }
+class ComponentA extends Component {
+  componentDidMount() {
+    console.log("ComponentA-mount生命周期---首次渲染")
+  }
+  componentWillUnmount() {
+    console.log("ComponentA-unmount生命周期--移除DOM")
+  }
+  render() {
+    console.log('ComponentA--执行了render方法')
+    return (
+      <div>
+        <h2>App的字组件</h2>
+        <p>测试卸载生命周期</p>
+      </div>
+    )
+  }
+}
