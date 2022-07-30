@@ -15,11 +15,12 @@ class ComponentA extends Component { // 类组件获取父组件传递的参数
   render() {
     // 可以通过react-test-render拿到props
     console.log('ComponentA--执行了render方法')
-    const { fatherName, count, films } = this.props
+    const { fatherName, count, films, subtract } = this.props
     return (
       <div>
         <h2>{fatherName}的子组件</h2>
         <p>{fatherName}父组件传递的参数{count}</p>
+        <button onClick={subtract}>-</button>
         <ul>
           {films.map(film => <li key={film}>{film}</li>)}
         </ul>
@@ -65,7 +66,7 @@ export default class App extends Component {
         <p>{count}</p>
         <button onClick={(e) => this.increment(e)}>+</button>
         <hr />
-        <ComponentA fatherName='App' films={films} count={count} />
+        <ComponentA fatherName='App' films={films} count={count} subtract={(e) => this.subtract(e)} />
       </div>
     )
   }
@@ -73,6 +74,12 @@ export default class App extends Component {
   increment(e) {
     this.setState({
       count: this.state.count + 1,
+    })
+  }
+
+  subtract(e) {
+    this.setState({
+      count: this.state.count - 1,
     })
   }
 }
