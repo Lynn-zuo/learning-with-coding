@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+}
+/* -----NavBar----- */
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+}
+.nav-bar .nav-item {
+    text-align: center;
+}
+.nav-bar .nav-item.nav-left {
+    width: 20%;
+}
+.nav-bar .nav-item.nav-center {
+    width:50%;
+}
+.nav-bar .nav-item.nav-right {
+    width: 30%;
+}
+/* -----TabControl----- */
+.tab-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.tab-item {
+    padding: 5px 10px;
+}
+.tab-item.active {
+    color: red;
+    border-bottom: 2px solid red;
+}
