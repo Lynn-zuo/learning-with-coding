@@ -1,8 +1,9 @@
 import { Component } from "react"
-import TabControl from "./TabControl.js"
+// import TabControl from "./TabControl.js"
+import TabControl from "./TabControlFunc.js"
 import { UserContext } from './userContext'
 
-TabControl.contextType = UserContext
+// TabControl.contextType = UserContext
 
 export default class MainBody extends Component {
   static contextType = UserContext
@@ -33,7 +34,6 @@ export default class MainBody extends Component {
     )
   }
   tabClick(index) {
-    console.log(index, "----index-app")
     this.setState({
       curIndex: index,
     })

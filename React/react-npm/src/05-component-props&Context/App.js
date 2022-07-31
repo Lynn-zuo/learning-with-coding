@@ -9,6 +9,7 @@ export default class App extends Component {
     super()
     this.state = {
       tabTitles: ["新款", "精选", "流行"],
+      param: 'default '
     }
   }
   render() {
