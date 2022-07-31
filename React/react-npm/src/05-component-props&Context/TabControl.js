@@ -1,5 +1,5 @@
 import { Component } from "react"
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
 
 export default class TabControl extends Component {
   // 类组件获取父组件传递的参数
@@ -9,13 +9,16 @@ export default class TabControl extends Component {
       // curIndex: props.curIndex,
     }
   }
-  static propTypes = {
-    // 方式二：es6中的class field写法
-    tabTitles: PropTypes.array,
-    curIndex: PropTypes.number,
-  }
+  // static propTypes = {
+  //   // 方式二：es6中的class field写法
+  //   tabTitles: PropTypes.array,
+  //   curIndex: PropTypes.number,
+  // }
   render() {
-    const { tabTitles, curIndex } = this.props
+    console.log(this.context, '---context-tab----')
+    const { tabTitles } = this.context
+    const { curIndex } = this.props
+    // const { tabTitles, curIndex } = this.props
     // const { curIndex } = this.state
     return (
       <div className='tab-panel'>
