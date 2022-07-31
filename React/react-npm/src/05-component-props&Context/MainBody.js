@@ -9,12 +9,14 @@ export default class MainBody extends Component {
     }
   }
   render() {
+    // 方式一：props逐层传递
     const { tabTitles } = this.props
     const { curIndex } = this.state
     return (
       <div>
         <TabControl
-          tabTitles={tabTitles}
+          // tabTitles={tabTitles} // 单个属性传递
+          {...this.props} // 属性展开多个传递
           curIndex={curIndex}
           tabClick={(index) => {
             this.tabClick(index)
