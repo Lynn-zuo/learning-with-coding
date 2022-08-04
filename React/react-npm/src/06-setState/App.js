@@ -11,8 +11,8 @@ export default class App extends Component {
       <div>
         <h2>setState详解</h2>
         <p>{ this.state.count }</p>
-        <button onClick={(e) => this.increment(e)}>改变文本+</button>
-        <button id='btn'>改变文本++</button>
+        <button onClick={(e) => this.increment(e)}>setTimeout方式+</button>
+        <button id='btn'>DOM事件监听+</button>
       </div>
     )
   }
@@ -32,7 +32,7 @@ export default class App extends Component {
 //     console.log('update+', this.state.count)
 //   }
 
-  increment(e) {
+  increment = (e) => {
     // 使用setState实现同步更新 TODO:不生效，待验证 - 看源码
     // 方式一: 将setState放入定时器
     // 1.多次调用setState相加但合并后值只增加1
