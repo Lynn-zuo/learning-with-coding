@@ -1,9 +1,9 @@
-import { Component } from "react"
+import { PureComponent } from "react"
 
-class Header extends Component {
-  shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
-    return false // 非响应式数据组件终止更新渲染
-  }
+class Header extends PureComponent {
+  // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
+  //   return false // 非响应式数据组件终止更新渲染
+  // }
   render() {
     console.log('header --------')
     return (
@@ -13,14 +13,14 @@ class Header extends Component {
     )
   }
 }
-class Count extends Component {
+class Count extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {}
   }
-  shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
-    return true // 更新渲染
-  }
+  // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
+  //   return true // 更新渲染
+  // }
   render() {
     console.log('count --------')
     return (
@@ -30,7 +30,7 @@ class Count extends Component {
     )
   }
 }
-export default class App extends Component {
+export default class App extends PureComponent {
   constructor(props) {
     super()
     this.state = {
@@ -38,13 +38,13 @@ export default class App extends Component {
         message: '你好啊王小波'
     }
   }
-  shouldComponentUpdate(nextProps, nextState) { // 方式一，在父组件判断是否需要更新组件
-    console.log(nextState, '---next')
-    if (this.state.count !== nextState.count) {
-      return true
-    }
-    return false
-  }
+  // shouldComponentUpdate(nextProps, nextState) { // 方式一，在父组件判断是否需要更新组件
+  //   console.log(nextState, '---next')
+  //   if (this.state.count !== nextState.count) {
+  //     return true
+  //   }
+  //   return false
+  // }
   render() {
     console.log('app --------')
     return (
