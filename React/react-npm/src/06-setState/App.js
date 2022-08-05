@@ -1,4 +1,4 @@
-import { PureComponent } from "react"
+import { Component, PureComponent } from "react"
 
 class Header extends PureComponent {
   // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
@@ -30,7 +30,7 @@ class Count extends PureComponent {
     )
   }
 }
-export default class App extends PureComponent {
+export default class App extends Component {
   constructor(props) {
     super()
     this.state = {
