@@ -1,18 +1,59 @@
 import { Component } from "react"
+
+class Header extends Component {
+  shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
+    return false // 非响应式数据组件终止更新渲染
+  }
+  render() {
+    console.log('header --------')
+    return (
+      <div>
+        <h2>setState详解</h2>
+      </div>
+    )
+  }
+}
+class Count extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
+    return true // 更新渲染
+  }
+  render() {
+    console.log('count --------')
+    return (
+      <div>
+        <p>{ this.props.count }</p>
+      </div>
+    )
+  }
+}
 export default class App extends Component {
   constructor(props) {
     super()
     this.state = {
-        count: 0
+        count: 0,
+        message: '你好啊王小波'
     }
   }
+  shouldComponentUpdate(nextProps, nextState) { // 方式一，在父组件判断是否需要更新组件
+    console.log(nextState, '---next')
+    if (this.state.count !== nextState.count) {
+      return true
+    }
+    return false
+  }
   render() {
+    console.log('app --------')
     return (
       <div>
-        <h2>setState详解</h2>
-        <p>{ this.state.count }</p>
+        <Header />
+        <Count count={this.state.count} />
         <button onClick={(e) => this.increment(e)}>setTimeout方式+</button>
         <button id='btn'>DOM事件监听+</button>
+        <button onClick={(e) => this.changeText(e)}>改变文本</button>
       </div>
     )
   }
@@ -63,5 +104,13 @@ export default class App extends Component {
     //     console.log('callback+', this.state.count) // 1
     // })
     // console.log('after+', this.state.count) // 0
+  }
+
+  changeText = (e) => {
+    this.setState({
+      message: '你好李银河'
+    }, () => {
+      console.log(this.state.message, '---msg')
+    })
   }
 }
