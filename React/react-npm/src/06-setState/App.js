@@ -68,10 +68,12 @@ export default class App extends PureComponent {
 
   incrementAge (index) {
     console.log(index, '----age++')
-    const newFriends = [...this.state.friends]
-    newFriends[index].age++
-    this.setState({
-      friends: newFriends
+    this.setState((state) => {
+      const newFriends = [...state.friends]
+      newFriends[index].age++
+      return {
+        friends: newFriends
+      }
     }, () => {
         console.log('callback+', this.state.friends) // 1
     })
