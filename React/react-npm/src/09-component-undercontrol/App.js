@@ -1,34 +1,32 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, createRef } from 'react'
 
 export default class App extends PureComponent {
   constructor() {
     super()
-    this.state = {
-        username: '',
-        password: '',
-        fruit: 'orange'
-    }
+    this.usernameRef = createRef()
+    this.passwordRef = createRef()
+    this.fruitRef = createRef()
   }
   render() {
-    const { username, password, fruit } = this.state
+    // const { username, password, fruit } = this.state
     return (
       <div>
+        {/*  非受控组件 */}
         <form onSubmit={(e) => {this.handleSubmit(e)}}>
             <label htmlFor="username">
                 用户：
-                {/* 受控组件 */}
-                <input type="text" id='username' name='username' value={username} onChange={e => this.handleChange(e)} />
+                <input ref={this.usernameRef} type="text" id='username' name='username' />
             </label>
             <br />
             <label htmlFor="password">
                 密码：
-                {/* 受控组件 */}
-                <input type="text" id='password' name='password' value={password} onChange={e => this.handleChange(e)} />
+                {/* 非受控组件 */}
+                <input ref={this.passwordRef} type="text" id='password' name='password' />
             </label>
             <br />
             <label htmlFor="fruit">
                 水果：
-                <select name="fruit" id="fruit" value={fruit} onChange={e => this.handleChange(e)}>
+                <select ref={this.fruitRef} name="fruit" id="fruit">
                     <option value="apple">苹果</option>
                     <option value="banana">香蕉</option>
                     <option value="orange">橘子</option>
@@ -39,37 +37,11 @@ export default class App extends PureComponent {
       </div>
     )
   }
-  
-  handleChange(e){
-    const { name, value } = e.target
-    console.log(name, value, '----change')
-    this.setState({ // 计算属性名
-        [name]: value
-    })
-  }
 
-//   handleChangeFruit(e) {
-//     console.log(e.target, '----changeFruits')
-//     this.setState({
-//         fruit: e.target.value
-//     })
-//   }
-
-//   handleChangePassword(e) {
-//     console.log(e.target, '----changePassword')
-//     this.setState({
-//         password: e.target.value
-//     })
-//   }
-
-//   handleChangeUsername(e) {
-//     console.log(e.target, '----changeUsername')
-//     this.setState({
-//         username: e.target.value
-//     })
-//   }
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state, '-----submit')
+    console.log(this.usernameRef.current.value, '-----username')
+    console.log(this.passwordRef.current.value, '-----password')
+    console.log(this.fruitRef.current.value, '-----fruit')
   }
 }
