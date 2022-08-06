@@ -17,18 +17,18 @@ export default class App extends PureComponent {
             <label htmlFor="username">
                 用户：
                 {/* 受控组件 */}
-                <input type="text" id='username' value={username} onChange={e => this.handleChangeUsername(e)} />
+                <input type="text" id='username' name='username' value={username} onChange={e => this.handleChange(e)} />
             </label>
             <br />
             <label htmlFor="password">
                 密码：
                 {/* 受控组件 */}
-                <input type="text" id='password' value={password} onChange={e => this.handleChangePassword(e)} />
+                <input type="text" id='password' name='password' value={password} onChange={e => this.handleChange(e)} />
             </label>
             <br />
-            <label htmlFor="fruits">
+            <label htmlFor="fruit">
                 水果：
-                <select name="fruits" id="fruits" value={fruit} onChange={e => this.handleChangeFruit(e)}>
+                <select name="fruit" id="fruit" value={fruit} onChange={e => this.handleChange(e)}>
                     <option value="apple">苹果</option>
                     <option value="banana">香蕉</option>
                     <option value="orange">橘子</option>
@@ -39,26 +39,35 @@ export default class App extends PureComponent {
       </div>
     )
   }
-  handleChangeFruit(e) {
-    console.log(e.target, '----changeFruits')
-    this.setState({
-        fruit: e.target.value
+  
+  handleChange(e){
+    const { name, value } = e.target
+    console.log(name, value, '----change')
+    this.setState({ // 计算属性名
+        [name]: value
     })
   }
 
-  handleChangePassword(e) {
-    console.log(e.target, '----changePassword')
-    this.setState({
-        password: e.target.value
-    })
-  }
+//   handleChangeFruit(e) {
+//     console.log(e.target, '----changeFruits')
+//     this.setState({
+//         fruit: e.target.value
+//     })
+//   }
 
-  handleChangeUsername(e) {
-    console.log(e.target, '----changeUsername')
-    this.setState({
-        username: e.target.value
-    })
-  }
+//   handleChangePassword(e) {
+//     console.log(e.target, '----changePassword')
+//     this.setState({
+//         password: e.target.value
+//     })
+//   }
+
+//   handleChangeUsername(e) {
+//     console.log(e.target, '----changeUsername')
+//     this.setState({
+//         username: e.target.value
+//     })
+//   }
   handleSubmit(e) {
     e.preventDefault()
     console.log(this.state, '-----submit')
