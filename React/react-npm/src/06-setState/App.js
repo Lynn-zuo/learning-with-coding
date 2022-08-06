@@ -1,9 +1,6 @@
-import { Component, PureComponent, memo } from "react"
+import { PureComponent, memo } from "react"
 
 class Header extends PureComponent {
-  // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
-  //   return false // 非响应式数据组件终止更新渲染
-  // }
   render() {
     console.log('header --------')
     return (
@@ -27,29 +24,27 @@ class Count extends PureComponent {
     super(props)
     this.state = {}
   }
-  // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
-  //   return true // 更新渲染
-  // }
   render() {
     console.log('count --------')
+    const { friends, incrementAge } = this.props
     return (
       <div>
-        <p>{ this.props.count }</p>
+        { friends.map((item, index) => <li key={item.id}>{item.name}年龄{item.age}岁<button onClick={() => incrementAge(index)}>+</button></li>) }
       </div>
     )
   }
 }
-export default class App extends Component {
+export default class App extends PureComponent {
   constructor(props) {
     super()
     this.state = {
-        count: 0,
+        friends: [{id: 0, name: '王小波', age: 40}, {id:1, name: '李银河', age: 41}, {id:2, name:'杨绛', age: 40}],
         message: '你好啊王小波'
     }
   }
   // shouldComponentUpdate(nextProps, nextState) { // 方式一，在父组件判断是否需要更新组件
   //   console.log(nextState, '---next')
-  //   if (this.state.count !== nextState.count) {
+  //   if (this.state.friends !== nextState.friends) {
   //     return true
   //   }
   //   return false
@@ -60,60 +55,45 @@ export default class App extends Component {
       <div>
         <Header />
         <MemoBanner />
-        <Count count={this.state.count} />
-        <button onClick={(e) => this.increment(e)}>setTimeout方式+</button>
-        <button id='btn'>DOM事件监听+</button>
+        <Count friends={this.state.friends} incrementAge={(e) => {this.incrementAge(e)}} />
+        <ul>
+        { this.state.friends.map(item => <li key={item.id}>{item.name}</li>) }
+        </ul>
+        <p><button onClick={(e) => this.increment(e)}>添加成员</button></p>
         <button onClick={(e) => this.changeText(e)}>改变文本</button>
       </div>
     )
   }
 
-  componentDidMount() { // 方式二：将setState放入原生DOM事件 TODO:不生效，待验证 - 看源码
-    document.getElementById('btn').addEventListener('click', () => {
-        console.log('btn被点击')
-        console.log('before+++', this.state.count)
-        this.setState({
-            count: this.state.count + 1
-        })
-        console.log('after+++', this.state.count)
+
+  incrementAge (index) {
+    console.log(index, '----age++')
+    const newFriends = [...this.state.friends]
+    newFriends[index].age++
+    this.setState({
+      friends: newFriends
+    }, () => {
+        console.log('callback+', this.state.friends) // 1
     })
   }
 
-//   componentDidUpdate() { // 方式二： 获取异步更新的state
-//     console.log('update+', this.state.count)
-//   }
-
   increment = (e) => {
-    // 使用setState实现同步更新 TODO:不生效，待验证 - 看源码
-    // 方式一: 将setState放入定时器
-    // 1.多次调用setState相加但合并后值只增加1
-    // 2.setState合并时执行多次累加的结果 -- 传入函数获取上一次更新的结果
-    console.log('before+', this.state.count)
-    setTimeout(() => {
-        console.log('before++', this.state.count)
-        this.setState({
-            count: this.state.count + 1
-        })
-        this.setState((prev, next) => {
-            return {
-                count: prev.count + 2
-            }
-        })
-        this.setState((prev, next) => {
-            return {
-                count: prev.count + 3
-            }
-        })
-        console.log('after++', this.state.count)
-    }, 0)
-    console.log('after+', this.state.count)
-    // console.log('before+', this.state.count) // 0
+    const last = this.state.friends.slice(-1)
+    // 方式一： 直接改变state，不改变引用
+    // this.state.friends.push({ id: (last[0].id + 1), name: '钱钟书'})
     // this.setState({
-    //     count: this.state.count + 1
-    // }, () => { // 方式一： 获取异步更新的state
-    //     console.log('callback+', this.state.count) // 1
+    //     friends: this.state.friends
+    // }, () => {
+    //     console.log('callback+', this.state.friends) // 1
     // })
-    // console.log('after+', this.state.count) // 0
+    // 方式二：创建一个新数组，改变引用 -- 推荐
+    const newFriends = [...this.state.friends]
+    newFriends.push({ id: (last[0].id + 1), name: '钱钟书', age: 43})
+    this.setState({
+      friends: newFriends
+    }, () => {
+        console.log('callback+', this.state.friends) // 1
+    })
   }
 
   changeText = (e) => {
