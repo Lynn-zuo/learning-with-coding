@@ -1,4 +1,4 @@
-import { Component, PureComponent } from "react"
+import { Component, PureComponent, memo } from "react"
 
 class Header extends PureComponent {
   // shouldComponentUpdate() { // 方式二，在子组件判断是否需要更新组件
@@ -13,6 +13,15 @@ class Header extends PureComponent {
     )
   }
 }
+
+const MemoBanner = memo(function Banner () {
+  console.log('banner --------')
+  return (
+    <div>
+      <h2>banner组件 -- 函数式组件memo使用</h2>
+    </div>
+  )
+})
 class Count extends PureComponent {
   constructor(props) {
     super(props)
@@ -50,6 +59,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
+        <MemoBanner />
         <Count count={this.state.count} />
         <button onClick={(e) => this.increment(e)}>setTimeout方式+</button>
         <button id='btn'>DOM事件监听+</button>
