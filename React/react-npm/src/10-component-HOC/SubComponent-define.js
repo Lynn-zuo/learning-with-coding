@@ -18,8 +18,8 @@ function enhanceComponent(Component) {
     // return class NewComponent extends PureComponent {
     // return class extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
     class NewComponent extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
-        render() {
-            return <SubComponent {...this.props} />
+        render() { // 应用一: 增强props
+            return <SubComponent {...this.props} region='杭州' />
         }
     }
     NewComponent.displayName = 'Wrap' // devtools展示组件名为Wrap
