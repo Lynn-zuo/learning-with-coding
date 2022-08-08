@@ -5,7 +5,8 @@ export default class App extends PureComponent {
   render() {
     return (
       <div>
-        <SubComponent />
+        <SubComponent name='类组件' />
+        <SubComponent name='函数组件' />
       </div>
     )
   }

@@ -4,20 +4,29 @@ class SubComponent extends PureComponent {
   render() {
     return (
       <div>
-        <h2>子组件</h2>
+        <h2>子组件: {this.props.name}</h2>
       </div>
     )
   }
 }
 
-// 高阶组件定义方式
+// 高阶组件定义方式 -- 类组件
+// function enhanceComponent(Component) {
+//     // return class NewComponent extends PureComponent {
+//     // return class extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
+//     class NewComponent extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
+//         render() {
+//             return <SubComponent {...this.props} />
+//         }
+//     }
+//     NewComponent.displayName = 'Wrap' // devtools展示组件名为Wrap
+//     return NewComponent
+// }
+
+// 高阶组件定义方式 -- 函数式组件
 function enhanceComponent(Component) {
-    // return class NewComponent extends PureComponent {
-    // return class extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
-    class NewComponent extends PureComponent { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
-        render() {
-            return <Component />
-        }
+    function NewComponent (props) { // 省略后，16版本为父组件名PureComponent，18版本为Anonymous
+        return <SubComponent {...props} />
     }
     NewComponent.displayName = 'Wrap' // devtools展示组件名为Wrap
     return NewComponent
