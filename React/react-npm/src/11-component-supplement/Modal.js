@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 
 export default class Modal extends PureComponent {
