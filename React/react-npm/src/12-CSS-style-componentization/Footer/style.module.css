@@ -1,0 +1,15 @@
+.title { /* 方式3：CSS Module */
+    font-size: 24px;
+    font-weight: 700;
+    color: red;
+}
+
+.subTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: yellow;
+}
+.content {
+    font-size: 16px;
+    font-weight: 500;
+}
