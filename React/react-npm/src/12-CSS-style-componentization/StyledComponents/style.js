@@ -1,5 +1,6 @@
 import styled, { ThemeProvider } from "styled-components"
 
+// 属性嵌套
 const StyledWrapper = styled.div`
   color: black;
 
