@@ -1,0 +1,13 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
+}
