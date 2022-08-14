@@ -17,9 +17,9 @@ export default class Home extends PureComponent {
         })
     })
   }
-  UNSAFE_componentWillMount() {
+  componentWillUnmount() {
     // 取消订阅
-    this.unsubscribe()
+    this.unsubscribe();
   }
   render() {
     const { counter } = this.state
