@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ name }}
+  </div>
+  <script>
+    // 1. add1不是纯函数
+    let foo = 2
+    function add1 (num) {
+        return foo + num
+    }
+
+    add1(3)
+    foo = 5
+    add1(3)
+
+    // 2. add2是纯函数
+    const bar = 2
+    function add2 (num) {
+        return foo + num
+    }
+    add2(3)
+
+    // 3. add3不是纯函数
+    const baz = {
+        foo: 2
+    }
+    function add3 (num) {
+        return baz.foo + num
+    }
+    add3(3)
+    baz.foo = 5
+    add3(3)
+
+    // 4. printInfo不是纯函数
+    const obj = {
+        name: 'lynne',
+        age: 25
+    }
+    function printInfo (info) {
+        info.name = 'change'
+    }
+    printInfo(obj)
+    console.log(obj) // obj被改变了
+
+    // 纯函数的两个要求
+    // - 1. 确定的输入产生确定的输出
+    // - 2. 不会产生副作用
+    
+  </script>
+</body>
+</html>
