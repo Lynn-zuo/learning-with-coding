@@ -3,6 +3,7 @@ import Home from '@/views/Home'
 import About from '@/views/About'
 import Redux from '@/views/Redux'
 import Request from '@/views/Request'
+import RequestReduxThunk from './views/RequestReduxThunk'
 
 export default class App extends PureComponent {
   render() {
@@ -15,6 +16,8 @@ export default class App extends PureComponent {
         <Redux />
         <hr />
         <Request />
+        <hr />
+        <RequestReduxThunk />
       </Fragment>
     )
   }
