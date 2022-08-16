@@ -1,19 +1,19 @@
 import React, { PureComponent } from "react"
-import store from "@/store/index.js"
+import { storeContext } from "./context"
 
 export function connect(mapStateToProps, mapDispatchToProp) {
   return function enhanceHOC(WrapComponent) { // 返回函数是一个高阶组件
-    return class extends PureComponent {
-      constructor(props) {
+    class enhanceComponent extends PureComponent {
+      constructor(props, context) {
         super(props)
         this.state = {
-          storeState: mapStateToProps(store.getState()),
+          storeState: mapStateToProps(context.getState()),
         }
       }
-      componentDidMount() {
-        this.subscribe = store.subscribe(() => {
+      componentDidMount() { // 订阅通知渲染
+        this.subscribe = this.context.subscribe(() => {
             this.setState({
-                storeState: mapStateToProps(store.getState())
+                storeState: mapStateToProps(this.context.getState())
             })
         })
       }
@@ -24,11 +24,14 @@ export function connect(mapStateToProps, mapDispatchToProp) {
         return (
           <WrapComponent
             {...this.props}
-            {...mapStateToProps(store.getState())} // 传入的是属性
-            {...mapDispatchToProp(store.dispatch)} // 传入的是函数
+            {...mapStateToProps(this.context.getState())} // 传入的是属性
+            {...mapDispatchToProp(this.context.dispatch)} // 传入的是函数
           />
         )
       }
     }
+
+    enhanceComponent.contextType = storeContext
+    return enhanceComponent
   }
 }
