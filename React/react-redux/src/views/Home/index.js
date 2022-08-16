@@ -1,32 +1,32 @@
-import React, { PureComponent } from "react"
-import store from '../../store/index.js'
-import { addAction, subAction } from '../../store/actionCreator.js'
+import React from "react"
+import { connect } from '@/utils/connect.js'
+import { decrement, subAction } from '@/store/actionCreator.js'
 
-export default class Home extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-        counter: store.getState().counter
-    }
-  }
-  componentDidMount() {
-    // 订阅
-    this.unsubscribe = store.subscribe(() => {
-        this.setState({
-            counter: store.getState().counter
-        })
-    })
-  }
-  componentWillUnmount() {
-    // 取消订阅
-    this.unsubscribe();
-  }
-  render() {
-    const { counter } = this.state
-    return <div>
-        <p>{counter}</p>
-        <button onClick={e => {store.dispatch(addAction(1))}}>+</button>
-        <button onClick={e => {store.dispatch(subAction(1))}}>-</button>
-    </div>
+function About (props) {
+  const { counter } = props
+  return <div>
+      <h2>Home SUB</h2>
+      <p>{counter}</p>
+      <button onClick={e => {props.decrement()}}>-1</button>
+      <button onClick={e => {props.subNumber(5)}}>-5</button>
+  </div>
+}
+
+const mapStateToProps = state => {
+  return { // 传入store的getState()函数获取的state
+    counter: state.counter // 这样只在connect中引用一次store
   }
 }
+
+const mapDispatchToProp = dispatch => {
+  return { // 传入store的dispatch函数
+    decrement: function() {
+      dispatch(decrement())
+    },
+    subNumber: function(num) {
+      dispatch(subAction(num))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProp)(About)
