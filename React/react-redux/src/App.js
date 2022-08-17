@@ -2,8 +2,9 @@ import React, { PureComponent, Fragment } from 'react'
 import Home from '@/views/Home'
 import About from '@/views/About'
 import Redux from '@/views/Redux'
-import Request from '@/views/Request'
-import RequestReduxThunk from './views/RequestReduxThunk'
+// import Request from '@/views/Request'
+// import RequestReduxThunk from './views/RequestReduxThunk'
+import RequestReduxSaga from './views/RequestReduxSaga'
 
 export default class App extends PureComponent {
   render() {
@@ -15,9 +16,13 @@ export default class App extends PureComponent {
         <hr />
         <Redux />
         <hr />
-        <Request />
+        {/* <Request /> */}
         <hr />
-        <RequestReduxThunk />
+        {/* <RequestReduxThunk /> */}
+        <hr />
+        <RequestReduxSaga />
+        <hr />
+        <br />
       </Fragment>
     )
   }

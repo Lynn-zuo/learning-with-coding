@@ -1,4 +1,4 @@
-import { INC, DEC, ADD_NUM, SUB_NUM, REQ_GET, REQ_POST } from './constants.js'
+import { INC, DEC, ADD_NUM, SUB_NUM, REQ_GET, REQ_POST, REQ_SAGA } from './constants.js'
 import { testGet, testPost } from "@/api"
 
 export const increment = () => ({
@@ -35,4 +35,9 @@ export const thunkRequestAction = async (dispatch, getState) => {
     const resPost = await testPost({ name: "lynne", age: "25" })
     dispatch(getAction(resGet))
     dispatch(postAction(resPost))
+}
+
+// redux-saga拦截的action
+export const sagaRequestAction = {
+    type: REQ_SAGA
 }

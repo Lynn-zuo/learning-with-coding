@@ -1,16 +1,17 @@
 import React, { PureComponent } from "react"
 import { connect } from "react-redux"
-import { thunkRequestAction } from "@/store/actionCreator.js"
+import { sagaRequestAction } from "@/store/actionCreator.js"
 
 class Request extends PureComponent {
   async componentDidMount() {
-    this.props.dispatch(thunkRequestAction)
+    console.log('----saga ---mount')
+    this.props.dispatch(sagaRequestAction)
   }
   render() {
     const { getData, postData } = this.props
     return (
       <div>
-        <h2>Request -- Redux-Thunk</h2>
+        <h2>Request -- Redux-saga </h2>
         <div>
           <p>data</p>
           <h2>get请求</h2>
