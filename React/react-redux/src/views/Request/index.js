@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
 import { connect } from "react-redux"
-import { getAction, postAction } from "@/store/actionCreator.js"
+import { getAction, postAction } from "@/store/reqData/actionCreator.js"
 import { testGet, testPost } from "@/api"
 
 class Request extends PureComponent {

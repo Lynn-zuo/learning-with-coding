@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { decrement, subAction } from '@/store/actionCreator.js'
+import { decrement, subAction } from '@/store/counter/actionCreator.js'
 
 function About (props) {
   const { counter } = props

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
 import store from '@/store/index.js'
-import { increment, addAction } from '@/store/actionCreator.js'
+import { increment, addAction } from '@/store/counter/actionCreator.js'
 
 export default class Home extends PureComponent {
   constructor(props) {

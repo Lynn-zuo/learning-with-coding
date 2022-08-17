@@ -1,7 +1,7 @@
 import { takeEvery, put, all } from 'redux-saga/effects'
-import { REQ_SAGA } from './constants.js'
 import { testGet, testPost } from "@/api"
-import { getAction, postAction } from "@/store/actionCreator.js"
+import { REQ_SAGA } from './constants.js'
+import { getAction, postAction } from "./actionCreator.js"
 
 function* reqData(action) { // 默认action
     const resGet = yield testGet({ name: "lynne", age: "25" })

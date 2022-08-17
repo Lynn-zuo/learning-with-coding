@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
 import { connect } from "react-redux"
-import { thunkRequestAction } from "@/store/actionCreator.js"
+import { thunkRequestAction } from "@/store/reqData/actionCreator.js"
 
 class Request extends PureComponent {
   async componentDidMount() {

@@ -2,7 +2,7 @@ import {legacy_createStore as createStore, applyMiddleware, compose } from 'redu
 import thunkMiddleware from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import reducer from './reducer.js'
-import saga from './saga.js'
+import saga from './reqData/saga.js'
 
 // 添加redux-devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({trace: true}) || compose;

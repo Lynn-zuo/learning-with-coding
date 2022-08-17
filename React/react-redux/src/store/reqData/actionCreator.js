@@ -1,23 +1,5 @@
-import { INC, DEC, ADD_NUM, SUB_NUM, REQ_GET, REQ_POST, REQ_SAGA } from './constants.js'
+import { REQ_GET, REQ_POST, REQ_SAGA } from './constants.js'
 import { testGet, testPost } from "@/api"
-
-export const increment = () => ({
-    type: INC
-})
-
-export const decrement = () => ({
-    type: DEC
-})
-
-export const addAction = num => ({
-    type: ADD_NUM,
-    num
-})
-
-export const subAction = num => ({
-    type: SUB_NUM,
-    num
-})
 
 export const getAction = (getData) => ({
     type: REQ_GET,

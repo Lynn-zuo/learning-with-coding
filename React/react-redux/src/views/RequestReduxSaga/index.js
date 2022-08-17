@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
 import { connect } from "react-redux"
-import { sagaRequestAction } from "@/store/actionCreator.js"
+import { sagaRequestAction } from "@/store/reqData/actionCreator.js"
 
 class Request extends PureComponent {
   async componentDidMount() {
