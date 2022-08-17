@@ -29,8 +29,8 @@ class Request extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    getData: state.getData,
-    postData: state.postData
+    getData: state.reqDataInfo.getData,
+    postData: state.reqDataInfo.postData
   }
 }
 

@@ -13,8 +13,9 @@ function About (props) {
 }
 
 const mapStateToProps = state => {
+  console.log(state, '---state')
   return { // 传入store的getState()函数获取的state
-    counter: state.counter // 这样只在connect中引用一次store
+    counter: state.counterInfo.counter // 这样只在connect中引用一次store
   }
 }
 
