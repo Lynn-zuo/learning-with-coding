@@ -5,6 +5,7 @@ import Home from '@/views/Home'
 import About from '@/views/About'
 import Request from '@/views/Request'
 import User from '@/views/User'
+import Login from '@/views/Login'
 import NotFound from '@/views/404'
 
 
@@ -53,9 +54,9 @@ export default class App extends PureComponent {
           <Route path='/about' element={<About />}></Route>
           <Route path='/request' element={<Request />}></Route>
           <Route path='/:id' element={<User />}></Route>
+          <Route path='/login' element={<Login />}></Route>
           {/* 无匹配路由则显示NotFound在版本6写法如下 */}
           <Route path='*' element={<NotFound />}></Route>
-          <Route path='/:id' element={<User />}></Route>
         </Routes>
         <hr />
         <br />
