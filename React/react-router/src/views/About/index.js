@@ -6,14 +6,14 @@ export default class Home extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-        counter: store.getState().counter
+        counter: store.getState().counterInfo.counter
     }
   }
   componentDidMount() {
     // 订阅
     this.unsubscribe = store.subscribe(() => {
         this.setState({
-            counter: store.getState().counter
+            counter: store.getState().counterInfo.counter
         })
     })
   }
