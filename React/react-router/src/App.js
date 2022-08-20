@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react'
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from '@/views/Home'
-import About from '@/views/About'
-import Request from '@/views/Request'
 import User from '@/views/User'
 import Login from '@/views/Login'
 import NotFound from '@/views/404'
@@ -16,13 +14,9 @@ export default class App extends PureComponent {
       navTitles: [{
         path: '/', name: '主页'
       }, {
-        path: '/home', name: '首页++'
+        path: '/home', name: '首页'
       }, {
-        path: '/about', name: '关于--'
-      }, {
-        path: '/request', name: '请求数据'
-      }, {
-        path: '/abc', name: 'abc'
+        path: '/user', name: '用户'
       }],
       curPath: ''
     }
@@ -50,9 +44,7 @@ export default class App extends PureComponent {
         <Routes>
           {/* react-router版本6开始必须 Routes 组件包裹，且component属性更新为element */}
           <Route path='/' element={<h2>主页</h2>}></Route>
-          <Route path='/home' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/request' element={<Request />}></Route>
+          <Route path='/home/*' element={<Home />}></Route>
           <Route path='/:id' element={<User />}></Route>
           <Route path='/login' element={<Login />}></Route>
           {/* 无匹配路由则显示NotFound在版本6写法如下 */}

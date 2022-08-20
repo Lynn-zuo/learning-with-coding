@@ -1,33 +1,20 @@
-import React from "react"
-import { connect } from 'react-redux'
-import { decrement, subAction } from '@/store/counter/actionCreator.js'
+import React, { PureComponent } from 'react'
+import { NavLink, Routes, Route } from 'react-router-dom'
+import Increment from '../Increment'
+import Subtract from '../Subtract'
 
-function About (props) {
-  const { counter } = props
-  return <div>
-      <h2>Home SUB</h2>
-      <p>{counter}</p>
-      <button onClick={e => {props.decrement()}}>-1</button>
-      <button onClick={e => {props.subNumber(5)}}>-5</button>
-  </div>
-}
-
-const mapStateToProps = state => {
-  console.log(state, '---state')
-  return { // 传入store的getState()函数获取的state
-    counter: state.counterInfo.counter // 这样只在connect中引用一次store
+export default class Home extends PureComponent {
+  render() {
+    return (
+      <div>
+        <NavLink to='increment'>+++</NavLink>
+        <NavLink to='subtract'>---</NavLink>
+        <Routes>
+          <Route path='/' element={<h2>首页展示</h2>}></Route>
+          <Route path='/increment' element={<Increment />}></Route>
+          <Route path='/subtract' element={<Subtract />}></Route>
+        </Routes>
+      </div>
+    )
   }
 }
-
-const mapDispatchToProp = dispatch => {
-  return { // 传入store的dispatch函数
-    decrement: function() {
-      dispatch(decrement())
-    },
-    subNumber: function(num) {
-      dispatch(subAction(num))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProp)(About)
