@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
-import { BrowserRouter, Link, NavLink, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from '@/views/Home'
 import About from '@/views/About'
 import Request from '@/views/Request'
+import User from '@/views/User'
+import NotFound from '@/views/404'
 
 
 export default class App extends PureComponent {
@@ -18,12 +20,14 @@ export default class App extends PureComponent {
         path: '/about', name: '关于--'
       }, {
         path: '/request', name: '请求数据'
+      }, {
+        path: '/abc', name: 'abc'
       }],
       curPath: ''
     }
   }
   render() {
-    const { navTitles, curPath } = this.state
+    const { navTitles } = this.state
     return (
       <BrowserRouter>
         {/* <Link to="/">主页</Link>
@@ -31,10 +35,10 @@ export default class App extends PureComponent {
         <Link to="/about">关于--</Link>
         <Link to="/request">请求数据</Link> */}
         {/* 设置样式：手动获取当前选中项，加自定义类名 */}
-        { navTitles.map(title => <Link key={title.path}
+        {/* { navTitles.map(title => <Link key={title.path}
                                  to={title.path} 
                                  className={ title.path === curPath ? 'link-active' : '' }
-                                 onClick={() => {this.getCur(title.path)}}>{title.name}</Link>) }
+                                 onClick={() => {this.getCur(title.path)}}>{title.name}</Link>) } */}
         <hr />
 
         {/* 设置样式：NavLink组件自动获取选中项，默认加类名active */}
@@ -44,9 +48,14 @@ export default class App extends PureComponent {
 
         <Routes>
           {/* react-router版本6开始必须 Routes 组件包裹，且component属性更新为element */}
+          <Route path='/' element={<h2>主页</h2>}></Route>
           <Route path='/home' element={<Home />}></Route>
           <Route path='/about' element={<About />}></Route>
           <Route path='/request' element={<Request />}></Route>
+          <Route path='/:id' element={<User />}></Route>
+          {/* 无匹配路由则显示NotFound在版本6写法如下 */}
+          <Route path='*' element={<NotFound />}></Route>
+          <Route path='/:id' element={<User />}></Route>
         </Routes>
         <hr />
         <br />
