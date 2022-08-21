@@ -8,9 +8,9 @@ export default function MultiState() {
     <div>
         <h2>MultiState</h2>
         <div>
-            <p>姓名：{name}</p>
-            <p>年龄：{age}</p>
-            <p>好友：{friends.map(item => <li key={item}>{item}</li>)}</p>
+            <p onClick={() => setName('zuo')}>姓名：{name}</p>
+            <p onClick={() => setAge(24)}>年龄：{age}</p>
+            <p onClick={() => setFriends(['zuo'])}>好友：{friends.map(item => <li key={item}>{item}</li>)}</p>
         </div>
     </div>
   )
