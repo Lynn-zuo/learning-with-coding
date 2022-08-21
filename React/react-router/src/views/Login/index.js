@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+// import { Navigate } from 'react-router-dom'
 import { login, logout } from '@/store/user/actionCreator.js'
 
 function Login (props) {

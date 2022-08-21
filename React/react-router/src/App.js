@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
+// import { renderRoutes } from 'react-router-config' // 引用了react-router5的Switch组件
+// import Routes from '@/router'
 import './App.css'
 import Home from '@/views/Home'
 import User from '@/views/User'
@@ -50,6 +52,8 @@ export default class App extends PureComponent {
           {/* 无匹配路由则显示NotFound在版本6写法如下 */}
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
+        {/* v6无法使用 */}
+        {/* { renderRoutes(Routes) } */}
         <hr />
         <br />
       </BrowserRouter>
