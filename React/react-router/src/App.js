@@ -43,7 +43,7 @@ export default class App extends PureComponent {
 
         <Routes>
           {/* react-router版本6开始必须 Routes 组件包裹，且component属性更新为element */}
-          <Route path='/' element={<h2>主页</h2>}></Route>
+          <Route path='/' element={<h2 onClick={() => {this.printRouter()}}>主页门户</h2>}></Route>
           <Route path='/home/*' element={<Home />}></Route>
           <Route path='/:id' element={<User />}></Route>
           <Route path='/login' element={<Login />}></Route>
@@ -59,5 +59,9 @@ export default class App extends PureComponent {
     this.setState({
       curPath: path
     })
+  }
+  printRouter() {
+    // withRouter API已移除
+    console.log(this.props)
   }
 }
