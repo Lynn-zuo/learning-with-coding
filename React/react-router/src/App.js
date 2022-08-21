@@ -16,7 +16,7 @@ export default class App extends PureComponent {
       }, {
         path: '/home', name: '首页'
       }, {
-        path: '/user', name: '用户'
+        path: '/user/lynne', name: '用户'
       }],
       curPath: ''
     }
@@ -45,7 +45,7 @@ export default class App extends PureComponent {
           {/* react-router版本6开始必须 Routes 组件包裹，且component属性更新为element */}
           <Route path='/' element={<h2 onClick={() => {this.printRouter()}}>主页门户</h2>}></Route>
           <Route path='/home/*' element={<Home />}></Route>
-          <Route path='/:id' element={<User />}></Route>
+          <Route path='/user/:id' element={<User />}></Route>
           <Route path='/login' element={<Login />}></Route>
           {/* 无匹配路由则显示NotFound在版本6写法如下 */}
           <Route path='*' element={<NotFound />}></Route>

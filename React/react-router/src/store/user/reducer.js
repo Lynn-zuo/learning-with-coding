@@ -2,7 +2,7 @@ import { LOGIN, LOGOUT } from './constants.js'
 
 const initialUserInfo = {
     userId: '',
-    isLogin: false
+    isLogin: true
 }
 
 function userReducer(state = initialUserInfo, action) {
