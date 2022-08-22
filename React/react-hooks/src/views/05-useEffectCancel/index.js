@@ -8,7 +8,7 @@ export default function useEffectCancel() {
     return () => { // 这里相当于componentWillUnmount
         console.log('取消订阅')
     }
-  }, []) // []数组内传入依赖的变量，依赖变量改变才会执行
+  }, [count]) // []数组内传入依赖的变量，依赖变量改变才会执行
   return (
     <div>
         <h2>useEffectCancel</h2>
