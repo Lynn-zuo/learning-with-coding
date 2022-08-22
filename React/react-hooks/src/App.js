@@ -7,8 +7,9 @@ import { useState } from 'react'
 import UseEffectCancel from '@/views/05-useEffectCancel'
 // import MultiuseEffect from '@/views/06-MultiuseEffect'
 import ContextHook from './views/07-ContextHook';
-import UseReducer from './views/08-useReducer';
-import UseReducer2 from './views/08-useReducer/counter2';
+// import UseReducer from './views/08-useReducer';
+// import UseReducer2 from './views/08-useReducer/counter2';
+import UseCallback from './views/09-useCallback'
 
 import { UserContext, ThemeContext } from '@/context'
 
@@ -32,8 +33,9 @@ function App() {
             <ContextHook />
           </ThemeContext.Provider>
         </UserContext.Provider>
-        <UseReducer />
-        <UseReducer2 />
+        {/* <UseReducer />
+        <UseReducer2 /> */}
+        <UseCallback />
       </main>
     </div>
   );
