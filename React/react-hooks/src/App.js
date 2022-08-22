@@ -5,6 +5,7 @@ import { useState } from 'react'
 // import ComplexStateModify from '@/views/03-ComplexStateModify'
 // import UseEffect from '@/views/04-useEffect'
 import UseEffectCancel from '@/views/05-useEffectCancel'
+import MultiuseEffect from '@/views/06-MultiuseEffect'
 function App() {
   const [show, setShow] = useState(false)
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* <UseEffect /> */}
         { show && <UseEffectCancel />}
         <button onClick={() => setShow(!show)}>切换展示</button>
+        <MultiuseEffect />
       </main>
     </div>
   );
