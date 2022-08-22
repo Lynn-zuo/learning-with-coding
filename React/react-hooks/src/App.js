@@ -9,7 +9,8 @@ import UseEffectCancel from '@/views/05-useEffectCancel'
 import ContextHook from './views/07-ContextHook';
 // import UseReducer from './views/08-useReducer';
 // import UseReducer2 from './views/08-useReducer/counter2';
-import UseCallback from './views/09-useCallback'
+// import UseCallback from './views/09-useCallback'
+import UseMemo from './views/10-useMemo/index2';
 
 import { UserContext, ThemeContext } from '@/context'
 
@@ -35,7 +36,8 @@ function App() {
         </UserContext.Provider>
         {/* <UseReducer />
         <UseReducer2 /> */}
-        <UseCallback />
+        {/* <UseCallback /> */}
+        <UseMemo />
       </main>
     </div>
   );
