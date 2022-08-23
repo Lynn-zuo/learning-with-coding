@@ -44,8 +44,8 @@ function App() {
         {/* <UseRef /> */}
         {/* <UseImperativeHandle /> */}
         {/* <UseLayoutEffect /> */}
-        { show && <CustomHook /> }
         <button onClick={() => setShow(!show)}>切换展示</button>
+        { show && <CustomHook /> }
       </main>
     </div>
   );
