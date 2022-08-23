@@ -11,7 +11,8 @@ import ContextHook from './views/07-ContextHook';
 // import UseReducer2 from './views/08-useReducer/counter2';
 // import UseCallback from './views/09-useCallback'
 // import UseMemo from './views/10-useMemo/index2';
-import UseRef from './views/11-useRef';
+// import UseRef from './views/11-useRef';
+import UseImperativeHandle from './views/12-useImperativeHandle';
 
 import { UserContext, ThemeContext } from '@/context'
 
@@ -39,7 +40,8 @@ function App() {
         <UseReducer2 /> */}
         {/* <UseCallback /> */}
         {/* <UseMemo /> */}
-        <UseRef />
+        {/* <UseRef /> */}
+        <UseImperativeHandle />
       </main>
     </div>
   );
