@@ -6,7 +6,7 @@ import { useState } from 'react'
 // import UseEffect from '@/views/04-useEffect'
 // import UseEffectCancel from '@/views/05-useEffectCancel'
 // import MultiuseEffect from '@/views/06-MultiuseEffect'
-// import ContextHook from './views/07-ContextHook';
+import ContextHook from './views/07-ContextHook';
 // import UseReducer from './views/08-useReducer';
 // import UseReducer2 from './views/08-useReducer/counter2';
 // import UseCallback from './views/09-useCallback'
@@ -16,7 +16,7 @@ import { useState } from 'react'
 // import UseLayoutEffect from './views/13-useLayoutEffect';
 import CustomHook from './views/14-customHook';
 
-// import { UserContext, ThemeContext } from '@/context'
+import { UserContext, ThemeContext } from '@/context'
 
 function App() {
   const [show, setShow] = useState(false)
@@ -32,11 +32,11 @@ function App() {
         {/* <UseEffect /> */}
         {/* { show && <UseEffectCancel />} */}
         {/* <MultiuseEffect /> */}
-        {/* <UserContext.Provider value={{name: 'lynne', age: 25}}>
+        <UserContext.Provider value={{name: 'lynne', age: 25}}>
           <ThemeContext.Provider value={{color: 'red', fontSize: '18px'}}>
             <ContextHook />
           </ThemeContext.Provider>
-        </UserContext.Provider> */}
+        </UserContext.Provider>
         {/* <UseReducer />
         <UseReducer2 /> */}
         {/* <UseCallback /> */}

@@ -1,9 +1,11 @@
-import React, { useContext } from "react"
-import { UserContext, ThemeContext } from "@/context"
+import React from "react"
+// import { UserContext, ThemeContext } from "@/context"
+import { useUserHook } from '@/hooks/user-hook.js'
 
 export default function ContextHook() {
-  const user = useContext(UserContext)
-  const theme = useContext(ThemeContext)
+  // const user = useContext(UserContext)
+  // const theme = useContext(ThemeContext)
+  const [user, theme] = useUserHook()
   console.log(user, theme, "---context----")
   return (
     <div>
