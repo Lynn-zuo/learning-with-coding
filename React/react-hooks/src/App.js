@@ -12,7 +12,8 @@ import ContextHook from './views/07-ContextHook';
 // import UseCallback from './views/09-useCallback'
 // import UseMemo from './views/10-useMemo/index2';
 // import UseRef from './views/11-useRef';
-import UseImperativeHandle from './views/12-useImperativeHandle';
+// import UseImperativeHandle from './views/12-useImperativeHandle';
+import UseLayoutEffect from './views/13-useLayoutEffect';
 
 import { UserContext, ThemeContext } from '@/context'
 
@@ -41,7 +42,8 @@ function App() {
         {/* <UseCallback /> */}
         {/* <UseMemo /> */}
         {/* <UseRef /> */}
-        <UseImperativeHandle />
+        {/* <UseImperativeHandle /> */}
+        <UseLayoutEffect />
       </main>
     </div>
   );
