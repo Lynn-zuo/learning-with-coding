@@ -10,7 +10,8 @@ import ContextHook from './views/07-ContextHook';
 // import UseReducer from './views/08-useReducer';
 // import UseReducer2 from './views/08-useReducer/counter2';
 // import UseCallback from './views/09-useCallback'
-import UseMemo from './views/10-useMemo/index2';
+// import UseMemo from './views/10-useMemo/index2';
+import UseRef from './views/11-useRef';
 
 import { UserContext, ThemeContext } from '@/context'
 
@@ -37,7 +38,8 @@ function App() {
         {/* <UseReducer />
         <UseReducer2 /> */}
         {/* <UseCallback /> */}
-        <UseMemo />
+        {/* <UseMemo /> */}
+        <UseRef />
       </main>
     </div>
   );
