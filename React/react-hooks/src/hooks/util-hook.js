@@ -24,3 +24,14 @@ export const useScrollPosition = () => {
   }, [])
   return scrollPosition
 }
+
+export const useLocalStorage = (info) => {
+  const [userInfo, setUserInfo] = useState(() => {
+    const user = JSON.parse(window.localStorage.getItem('user-info'))
+    return user
+  })
+  useEffect(() => {
+    window.localStorage.setItem('user-info', JSON.stringify(info))
+  }, [info])
+  return [userInfo, setUserInfo]
+}
