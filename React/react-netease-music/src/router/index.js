@@ -3,7 +3,9 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import Discover from '@/pages/discover';
 import Friend from '@/pages/friend';
 import Mine from '@/pages/mine';
-import NotFound from '@/pages/404'
+import Download from '@/pages/download';
+import Login from '@/pages/login';
+import NotFound from '@/pages/404';
 
 const routes = [{
     path: '/',
@@ -17,6 +19,12 @@ const routes = [{
 }, {
     path: '/mine',
     element: <Mine />
+}, {
+    path: '/download',
+    element: <Download />
+}, {
+    path: '/login',
+    element: <Login />
 }, {
     path: '/404',
     element: <NotFound />
