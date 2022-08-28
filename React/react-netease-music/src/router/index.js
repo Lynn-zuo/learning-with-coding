@@ -1,16 +1,32 @@
+import { Navigate, useRoutes } from 'react-router-dom';
+
 import Discover from '@/pages/discover';
-import Friend from '../pages/friend';
-import Mine from '../pages/mine';
+import Friend from '@/pages/friend';
+import Mine from '@/pages/mine';
+import NotFound from '@/pages/404'
 
 const routes = [{
     path: '/',
-    component: Discover
+    element: <Navigate to='/discover' />
+}, {
+    path: '/discover',
+    element: <Discover />
 }, {
     path: '/friend',
-    component: Friend
+    element: <Friend />
 }, {
     path: '/mine',
-    component: Mine
+    element: <Mine />
+}, {
+    path: '/404',
+    element: <NotFound />
+}, {
+    path: '*',
+    element: <Navigate to='/404' />
 }]
 
-export default routes
+const Router = () => {
+    return useRoutes(routes)
+}
+
+export default Router
