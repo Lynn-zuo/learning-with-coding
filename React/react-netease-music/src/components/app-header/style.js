@@ -4,7 +4,7 @@ export const HeaderWrapper = styled.div`
   height: 75px;
   background-color: #333;
   .header-wrap {
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
   }
   .content {

@@ -1,9 +1,16 @@
 import React, { memo } from "react"
 
+import footerLeft from '@/assets/img/footer-left.jpg';
+import footerRight from '@/assets/img/footer-right.jpg';
+import { FooterWrapper } from "./style";
+
 export default memo(function XAppFooter() {
   return (
-    <div>
-      <h2>XAppFooter</h2>
-    </div>
+    <FooterWrapper>
+      <div className="content-wrapper">
+        <img className="footer-left" src={footerLeft} alt="logo" />
+        <img className="footer-right" src={footerRight} alt="logo" />
+      </div>
+    </FooterWrapper>
   )
 })
