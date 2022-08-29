@@ -17,3 +17,20 @@ export const headerLinks = [{
     title: '下载客户端',
     link: '/download'
 }]
+
+export const discoverTopMenus = [{
+    title: '推荐',
+    link: '/discover/' // 最后要加上 / 才能区分当前选中路由不匹配默认子路由
+}, {
+    title: '排行榜',
+    link: '/discover/rank'
+}, {
+    title: '歌单',
+    link: '/discover/song'
+}, {
+    title: '主播电台',
+    link: '/discover/station'
+}, {
+    title: '新碟上架',
+    link: '/discover/new-disc'
+}]

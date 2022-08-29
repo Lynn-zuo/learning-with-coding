@@ -7,7 +7,7 @@ import { FooterWrapper } from "./style";
 export default memo(function XAppFooter() {
   return (
     <FooterWrapper>
-      <div className="content-wrapper">
+      <div className="content-wrapper wrap-v1">
         <img className="footer-left" src={footerLeft} alt="logo" />
         <img className="footer-right" src={footerRight} alt="logo" />
       </div>

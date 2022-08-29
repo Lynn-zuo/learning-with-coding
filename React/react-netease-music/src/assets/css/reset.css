@@ -349,3 +349,10 @@ template {
 [hidden] {
   display: none;
 }
+
+/* 自定义样式 */
+.wrap-v1 {
+  width: 78%;
+  display: flex;
+  justify-content: space-between;
+}

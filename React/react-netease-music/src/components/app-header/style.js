@@ -3,13 +3,10 @@ import styled from "styled-components"
 export const HeaderWrapper = styled.div`
   height: 75px;
   background-color: #333;
-  .header-wrap {
-    width: 65%;
-    margin: 0 auto;
-  }
   .content {
     height: 70px;
     display: flex;
+    margin: 0 auto;
   }
   .divider {
     height: 5px;
@@ -26,7 +23,7 @@ export const ContentLeft = styled.div`
     display: flex;
   }
   .link-item {
-    padding: 0 12px;
+    padding: 0 28px;
     height: 70px;
     display: flex;
     justify-content: center;
@@ -38,12 +35,13 @@ export const ContentLeft = styled.div`
       text-decoration: none;
       white-space: nowrap;
     }
-    &:hover, &.active {
+    &:hover,
+    &.active {
       background-color: #242424;
     }
     &.active .icon {
-        position: absolute;
-        bottom: 0;
+      position: absolute;
+      bottom: 0;
       border: 6px solid;
       border-color: transparent transparent #c20c0c;
     }
@@ -55,9 +53,10 @@ export const ContentRight = styled.div`
   align-items: center;
   .search-input {
     height: 30px;
+    width: 140px;
     border-radius: 20px;
     outline: none;
-    margin-right: 10px;
+    margin-right: 18px;
   }
   .btn {
     white-space: nowrap;
@@ -73,7 +72,7 @@ export const ContentRight = styled.div`
     border: none;
     font-size: 12px;
     &:hover {
-        text-decoration: underline;
+      text-decoration: underline;
     }
   }
 `

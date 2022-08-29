@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
 import Discover from '@/pages/discover';
+import discoverChildren from './discoverChildren';
 import Friend from '@/pages/friend';
 import Mine from '@/pages/mine';
 import Download from '@/pages/download';
@@ -12,7 +13,8 @@ const routes = [{
     element: <Navigate to='/discover' />
 }, {
     path: '/discover',
-    element: <Discover />
+    element: <Discover />,
+    children: discoverChildren
 }, {
     path: '/friend',
     element: <Friend />

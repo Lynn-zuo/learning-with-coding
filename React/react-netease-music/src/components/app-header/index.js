@@ -21,7 +21,7 @@ export default memo(function XAppHeader() {
   const [curLink, setCurLink] = useState('/')
   return (
     <HeaderWrapper>
-      <div className='content header-wrap'>
+      <div className='content wrap-v1'>
         <ContentLeft>
             <a href="#/">
               <img className="logo" src={logo} alt="logo" />
