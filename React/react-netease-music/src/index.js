@@ -4,8 +4,4 @@ import App from './App';
 import '@/assets/css/reset.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />); // 移除严格模式
