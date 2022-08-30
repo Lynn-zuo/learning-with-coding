@@ -1,17 +1,10 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { NavLink, Outlet } from "react-router-dom";
-import api from '@/api'
 
 import { discoverTopMenus } from '../../common/local-data';
 import { DiscoverWrapper, TopMenuWrapper } from './style';
 
-const Discover = memo(() => {
-  useEffect(() => {
-    api.Discover.testGet().then(res => {
-        console.log(res, '----res--get')
-    })
-  })
-  
+const Discover = () => {
   return (
     <DiscoverWrapper>
         <div className="top-menu-wrap">
@@ -27,6 +20,6 @@ const Discover = memo(() => {
         <Outlet />
     </DiscoverWrapper>
   )
-})
+}
 
-export default Discover
+export default memo(Discover)

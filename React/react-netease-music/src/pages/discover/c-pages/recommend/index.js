@@ -1,9 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { connect } from 'react-redux';
+import { getTopBannerAction } from './store/actionCreators';
 
-const Recommend = memo(() => {
+const Recommend = (props) => {
+  const { getBanners, topBanners } = props
+  useEffect(() => {
+    getBanners({type: 2})
+  }, [getBanners])
   return (
-    <div>Recommend</div>
+    <div>Recommend: {topBanners.length}</div>
   )
+}
+
+const mapStateToProps = state => ({
+    topBanners: state.recommend.topBanners
 })
 
-export default Recommend
+const mapDispatchToProps = dispatch => ({
+    getBanners: (params) => {
+        dispatch(getTopBannerAction(params))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Recommend))
