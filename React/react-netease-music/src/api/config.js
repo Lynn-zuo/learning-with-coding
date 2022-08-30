@@ -1,5 +1,5 @@
 const Config = {
-    BASE_URL: 'https:httpbin.org/',
+    BASE_URL: 'https://coderwhy-music.vercel.app/',
     TIMEOUT: 3000
 }
 
