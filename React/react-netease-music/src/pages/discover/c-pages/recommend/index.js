@@ -1,25 +1,20 @@
 import React, { memo, useEffect } from 'react'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTopBannerAction } from './store/actionCreators';
 
 const Recommend = (props) => {
-  const { getBanners, topBanners } = props
+  // 组件和redux关联：获取数据和进行操作
+  const { topBanners } = useSelector(state => ({
+    topBanners: state.recommend.topBanners
+  }))
+  const dispatch = useDispatch()
+  // 发送网络请求
   useEffect(() => {
-    getBanners({type: 2})
-  }, [getBanners])
+    dispatch(getTopBannerAction({type: 0}))
+  }, [dispatch]) // []放入需要当发生改变时组件会重新渲染
   return (
     <div>Recommend: {topBanners.length}</div>
   )
 }
 
-const mapStateToProps = state => ({
-    topBanners: state.recommend.topBanners
-})
-
-const mapDispatchToProps = dispatch => ({
-    getBanners: (params) => {
-        dispatch(getTopBannerAction(params))
-    }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Recommend))
+export default memo(Recommend)
