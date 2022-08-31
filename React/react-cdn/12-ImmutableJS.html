@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.1.0/immutable.min.js"></script>
+  <script>
+    const im = Immutable
+    const info = {
+        name: 'lynne',
+        age: 25,
+        friend: {
+            name: 'kobe',
+            age: 18
+        }
+    }
+    // Map使用 -- 只做浅层的转换
+    const infoIM = im.Map(info)
+    const obj = infoIM
+    const infoIM2 = infoIM.set('name', 'why')
+    console.log(obj.get('name'), 'obj')
+    console.log(infoIM.get('name'), 'infoIM')
+    console.log(infoIM2.get('name'), 'infoIM2')
+    console.log(infoIM2.get('friend'), 'friend') // 普通对象
+
+    // List使用
+    const names = ['lynne', 'gao', 'code']
+    const namesIM = im.List(names)
+    const arrIM = namesIM.set(0, 'why')
+    console.log(namesIM.get(0), 'namesIM')
+    console.log(arrIM.get(0), 'arIM')
+
+    // fromJS使用 -- 所有嵌套数据都转换
+    const infoIM3 = im.fromJS(info)
+    console.log(infoIM3.get('friend'), 'friend') // 嵌套对象保持不可变性
+
+  </script>
+</body>
+</html>
