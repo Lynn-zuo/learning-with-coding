@@ -1,6 +1,8 @@
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopBannerAction } from './store/actionCreators';
+import Banner from './components/banner'
+import { RecommendWrapper } from './style'
 
 const Recommend = (props) => {
   // 组件和redux关联：获取数据和进行操作
@@ -14,7 +16,9 @@ const Recommend = (props) => {
     dispatch(getTopBannerAction({type: 0}))
   }, [dispatch]) // []放入需要当发生改变时组件会重新渲染
   return (
-    <div>Recommend: {topBanners.length}</div>
+    <RecommendWrapper>
+      <Banner banners={topBanners} />
+    </RecommendWrapper>
   )
 }
 

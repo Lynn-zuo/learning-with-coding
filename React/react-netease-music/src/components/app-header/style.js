@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const HeaderWrapper = styled.div`
   height: 75px;
   background-color: #333;
+  overflow: hidden;
   .content {
     height: 70px;
     display: flex;

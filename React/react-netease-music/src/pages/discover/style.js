@@ -5,6 +5,7 @@ export const DiscoverWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   .top-menu-wrap {
     width: 100%;
     display: flex;
@@ -24,7 +25,6 @@ export const TopMenuWrapper = styled.div`
   .link-menu-item {
     border-radius: 12px;
     padding: 0 12px;
-    margin: 0 40px;
     white-space: nowrap;
     color: #fff;
     &.active {
