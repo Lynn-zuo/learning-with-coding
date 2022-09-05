@@ -34,3 +34,20 @@ export const discoverTopMenus = [{
     title: '新碟上架',
     link: '/discover/new-disc'
 }]
+
+export const HotRCMMenus = [{
+    title: '华语',
+    link: '/discover/'
+}, {
+    title: '流行',
+    link: '/discover/popular'
+}, {
+    title: '民谣',
+    link: '/discover/folk'
+}, {
+    title: '摇滚',
+    link: '/discover/rock'
+}, {
+    title: '电子',
+    link: '/discover/electronic'
+}]

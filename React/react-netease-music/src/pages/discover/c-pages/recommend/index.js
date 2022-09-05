@@ -2,7 +2,13 @@ import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopBannerAction } from './store/actionCreators';
 import Banner from './components/banner'
-import { RecommendWrapper } from './style'
+import HotRCM from './components/hot-rcm'
+import NewRCM from './components/new-rcm'
+import Rank from './components/rank'
+import { RecommendWrapper,
+         RecommendContentWrapper,
+         RecommendLeftWrapper,
+         RecommendRightWrapper } from './style'
 
 const Recommend = (props) => {
   // 组件和redux关联：获取数据和进行操作
@@ -18,6 +24,14 @@ const Recommend = (props) => {
   return (
     <RecommendWrapper>
       <Banner banners={topBanners} />
+      <RecommendContentWrapper>
+        <RecommendLeftWrapper>
+          <HotRCM />
+          <NewRCM />
+          <Rank />
+        </RecommendLeftWrapper>
+        <RecommendRightWrapper>right</RecommendRightWrapper>
+      </RecommendContentWrapper>
     </RecommendWrapper>
   )
 }
