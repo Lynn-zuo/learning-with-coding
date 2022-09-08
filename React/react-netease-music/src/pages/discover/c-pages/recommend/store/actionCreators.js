@@ -12,3 +12,15 @@ export const getTopBannerAction = (params) => {
         })
     }
 }
+
+const changeHotRecommendAction = (res) => ({
+    type: actionTypes.HOT_RECOMMENDS,
+    hotRecommends: res.result
+})
+export const getHotRecommendAction = (params) => {
+    return dispatch => {
+        api.Discover.getHotList(params).then(res => {
+           dispatch(changeHotRecommendAction(res))
+        })
+    }
+}

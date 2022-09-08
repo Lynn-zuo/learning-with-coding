@@ -6,3 +6,9 @@ export const getBannerList = (params) => {
     return res
   })
 }
+
+export const getHotList = (params) => {
+  return gatewayAPI.get("/personalized", { params }).then((res) => {
+    return res
+  })
+}
