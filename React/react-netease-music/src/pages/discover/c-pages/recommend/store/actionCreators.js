@@ -14,13 +14,25 @@ export const getTopBannerAction = (params) => {
 }
 
 const changeHotRecommendAction = (res) => ({
-    type: actionTypes.HOT_RECOMMENDS,
+    type: actionTypes.CHANGE_HOT_RECOMMENDS,
     hotRecommends: res.result
 })
 export const getHotRecommendAction = (params) => {
     return dispatch => {
         api.Discover.getHotList(params).then(res => {
            dispatch(changeHotRecommendAction(res))
+        })
+    }
+}
+
+const changeAlbumNewestAction = (res) => ({
+    type: actionTypes.CHANGE_ALBUM_NEWEST,
+    albumNewest: res.albums
+})
+export const getAlbumNewestAction = (params) => {
+    return dispatch => {
+        api.Discover.getHotNewest(params).then(res => {
+           dispatch(changeAlbumNewestAction(res))
         })
     }
 }

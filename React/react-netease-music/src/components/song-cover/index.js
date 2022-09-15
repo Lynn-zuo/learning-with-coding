@@ -7,7 +7,7 @@ const SongCover = memo((props) => {
   return (
     <SongCoverWrapper>
         <div className='cover-img-wrapper'>
-            <img class='song-cover-img' src={formatSizeImg(props.picUrl, 140)} alt="cover" />
+            <img className='song-cover-img' src={formatSizeImg(props.picUrl, 140)} alt="cover" />
             <div className="play-cover">
                 <CustomerServiceOutlined className='icon-listen' />
                 <span>{formatCount(props.playCount)}</span>
