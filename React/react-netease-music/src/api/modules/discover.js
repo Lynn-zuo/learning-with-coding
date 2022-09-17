@@ -21,7 +21,7 @@ export const getHotNewest = (params) => {
 }
 // 热门榜单
 export const getHotTopList = (params) => {
-  return gatewayAPI.post("/top/album", { params }).then((res) => {
+  return gatewayAPI.get("/playlist/detail", { params }).then((res) => {
     return res
   })
 }

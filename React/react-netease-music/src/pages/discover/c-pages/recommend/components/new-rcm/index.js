@@ -22,7 +22,6 @@ const NewRCM = memo(() => {
     dispatch(getAlbumNewestAction())
   }, [dispatch])
 
-  console.log(albumNewest.length, albumNewest.length%5 === 0, Math.floor(albumNewest.length/5), '----albumNewest---')
   return (
     <NewRCMWrapper>
       <ThemeHeaderRCM title='新碟上架' />

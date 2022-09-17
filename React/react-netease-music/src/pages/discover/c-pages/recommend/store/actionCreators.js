@@ -36,3 +36,32 @@ export const getAlbumNewestAction = (params) => {
         })
     }
 }
+
+const changeUpRankingAction = (res) => ({
+    type: actionTypes.CHANGE_UP_RANKING,
+    upRanking: res.playlist
+})
+const changeNewRankingAction = (res) => ({
+    type: actionTypes.CHANGE_NEW_RANKING,
+    newRanking: res.playlist
+})
+const changeOriginRankingAction = (res) => ({
+    type: actionTypes.CHANGE_ORIGIN_RANKING,
+    originRanking: res.playlist
+})
+export const getTopListAction = (params) => {
+    return dispatch => {
+        api.Discover.getHotTopList(params).then(res => {
+           switch (params.id) {
+            case 19723756:
+              return dispatch(changeUpRankingAction(res))
+            case 3779629:
+              return dispatch(changeNewRankingAction(res))
+            case 2884035:
+              return dispatch(changeOriginRankingAction(res))
+            default:
+              return
+           }
+        })
+    }
+}
