@@ -1,13 +1,14 @@
 import styled from "styled-components"
 
 export const HeaderWrapper = styled.div`
-  height: 75px;
+  height: 70px;
   background-color: #333;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .content {
     height: 70px;
     display: flex;
-    margin: 0 auto;
   }
   .divider {
     height: 5px;
@@ -50,7 +51,7 @@ export const ContentLeft = styled.div`
 `
 export const ContentRight = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   .search-input {
     height: 30px;

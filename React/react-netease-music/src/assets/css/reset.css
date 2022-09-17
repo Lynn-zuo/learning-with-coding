@@ -353,7 +353,7 @@ template {
 
 /* 自定义样式 */
 .wrap-v1 {
-  width: 78%;
+  width: 85%;
   display: flex;
   justify-content: space-between;
 }
