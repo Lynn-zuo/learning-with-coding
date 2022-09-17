@@ -5,7 +5,7 @@ import bgRankImg from '@/assets/img/bg-rank-list.jpg'
 import { TopRankingWrapper, HeaderWrapper, ListWrapper, FootWrapper } from './style'
 
 const TopRanking = memo((props) => {
-  const { coverImgUrl, name, tracks } = props.rankInfo
+  const { coverImgUrl, name, tracks = [] } = props.rankInfo
   return (
     <TopRankingWrapper bgImg={bgRankImg}>
         <HeaderWrapper>
@@ -21,7 +21,7 @@ const TopRanking = memo((props) => {
             </div>
         </HeaderWrapper>
         <ListWrapper>
-            { tracks.map((music,muIndex) => <li className='music-line'>
+            { tracks?.map((music,muIndex) => <li key={music.id} className='music-line'>
                 <span>{muIndex+1}</span>
                 <div className="music-info-line no-wrap">
                   <span className='no-wrap'>{music.name}</span>

@@ -1,10 +1,13 @@
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopBannerAction } from './store/actionCreators';
+import UserLogin from 'components/user-login';
 import Banner from './components/banner'
 import HotRCM from './components/hot-rcm'
 import NewRCM from './components/new-rcm'
 import Rank from './components/rank'
+import BeSinger from './components/be-singer';
+import HotAnchor from './components/hot-anchor';
 import { RecommendWrapper,
          RecommendContentWrapper,
          RecommendLeftWrapper,
@@ -30,7 +33,11 @@ const Recommend = (props) => {
           <NewRCM />
           <Rank />
         </RecommendLeftWrapper>
-        <RecommendRightWrapper>right</RecommendRightWrapper>
+        <RecommendRightWrapper>
+          <UserLogin />
+          <BeSinger />
+          <HotAnchor />
+        </RecommendRightWrapper>
       </RecommendContentWrapper>
     </RecommendWrapper>
   )

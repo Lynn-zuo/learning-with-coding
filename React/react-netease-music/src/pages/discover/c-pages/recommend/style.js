@@ -13,7 +13,10 @@ export const RecommendContentWrapper = styled.div`
 
 export const RecommendLeftWrapper = styled.div`
   width: 730px;
-  padding: 12px 16px;
+  padding: 16px 16px 36px;
+  background-color: #fff;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
 `
 export const RecommendRightWrapper = styled.div`
   width: 254px;

@@ -5,7 +5,6 @@ export const DiscoverWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   .top-menu-wrap {
     width: 100%;
     display: flex;
