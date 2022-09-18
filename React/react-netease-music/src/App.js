@@ -6,7 +6,7 @@ import store from '@/store/index.js';
 import { Provider } from 'react-redux'
 import XAppHeader from 'components/app-header';
 import XAppFooter from 'components/app-footer';
-
+import PlayerBar from '@/pages/player/player-bar';
 
 export default memo(function App() {
   return (
@@ -15,6 +15,7 @@ export default memo(function App() {
         <XAppHeader />
         <Router />
         <XAppFooter />
+        <PlayerBar />
       </HashRouter>
     </Provider>
   );
