@@ -61,6 +61,14 @@ export const PlayerProgressWrapper = styled.div`
     .progress-bar {
         width: 520px;
         margin-right: 10px;
+        .ant-slider-rail {
+            background-color: #535353;
+            height: 8px;
+            border-radius: 8px;
+        }
+        .ant-slider-handle {
+            margin-top: -3px;
+        }
     }
   }
 `
