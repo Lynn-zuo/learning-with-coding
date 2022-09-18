@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useRef } from 'react'
-import { Progress } from 'antd'
+import React, { memo, useEffect, useRef, useState } from 'react'
+import { Slider } from 'antd'
 import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined,
          FolderAddOutlined, SelectOutlined, UploadOutlined,
          SoundFilled, RetweetOutlined, ContainerOutlined } from '@ant-design/icons'
@@ -22,11 +22,20 @@ const PlayerBar = memo(() => {
     audioRef.current.src = getPlayerSong(currentSong?.id)
     audioRef.current.play()
   }
+
+  const stopMusic = () => {
+    audioRef.current.pause()
+  }
+
+  const [currentTime, setCurrentTime] = useState(0)
+  const timeUpdate = (e) => {
+    setCurrentTime(e.target.currentTime * 1000)
+  }
   return (
     <PlayerBarWrapper>
       <div className="player-content wrap-v1">
         <ControlBtnWrapper>
-          <StepBackwardOutlined className='btn btn-prev' />
+          <StepBackwardOutlined className='btn btn-prev' onClick={() => stopMusic()} />
           <PlayCircleOutlined className='btn btn-change' onClick={() => playMusic()} />
           <StepForwardOutlined className='btn btn-next' />
         </ControlBtnWrapper>
@@ -42,14 +51,8 @@ const PlayerBar = memo(() => {
               <a href="/">{currentSong?.ar && currentSong?.ar[0]?.name}</a>
             </div>
             <div className="progress-bar-wrap">
-              <div className="progress-bar">
-                <Progress
-                  percent={50} 
-                  strokeColor='#c80b0d'
-                  trailColor='#c1c1c1'
-                  showInfo={false} />
-              </div>
-              <span>{currentSong?.dt || 0}</span>
+              <Slider className="progress-bar" value={currentTime / currentSong?.dt *100 } />
+              <span>{formatMinuteSecond(currentTime) || 0}</span>
               <span>/{formatMinuteSecond(currentSong?.dt) || 0}</span>
             </div>
           </div>
@@ -67,7 +70,7 @@ const PlayerBar = memo(() => {
           </div>
         </OperateBtnWrapper>
       </div>
-      <audio ref={audioRef} src=''></audio>
+      <audio ref={audioRef} src='' onTimeUpdate={(e) => timeUpdate(e)}></audio>
     </PlayerBarWrapper>
   )
 })
