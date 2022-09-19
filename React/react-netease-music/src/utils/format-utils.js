@@ -49,7 +49,6 @@ export const formatMonthDay = (time) => {
     return formateDate(time, 'MM月dd日')
 }
 export const formatMinuteSecond = (time) => {
-    console.log(time, formateDate(time, 'mm:ss'), '---time')
     return formateDate(time, 'mm:ss')
 }
 

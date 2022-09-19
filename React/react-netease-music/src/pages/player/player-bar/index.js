@@ -1,7 +1,7 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { Slider } from 'antd'
 import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined,
-         FolderAddOutlined, SelectOutlined, UploadOutlined,
+         FolderAddOutlined, SelectOutlined, UploadOutlined, PauseCircleOutlined,
          SoundFilled, RetweetOutlined, ContainerOutlined } from '@ant-design/icons'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { formatSizeImg, formatMinuteSecond, getPlayerSong } from '@/utils/format-utils'
@@ -12,33 +12,56 @@ const PlayerBar = memo(() => {
   useEffect(() => {
     dispatch(getCurrentSongAction({ ids: 566436427 }))
   }, [dispatch])
-
   const { currentSong = {} } = useSelector((state) => ({
     currentSong: state.getIn(['player', 'currentSong'])
   }), shallowEqual)
   
   const audioRef = useRef()
-  const playMusic = () => {
+  useEffect(() => {
     audioRef.current.src = getPlayerSong(currentSong?.id)
-    audioRef.current.play()
+  }, [currentSong?.id])
+
+  const [isPlaying, setIsPlaying] = useState(false)
+  
+  const playMusic = () => {
+    setIsPlaying(!isPlaying)
+    isPlaying ? audioRef.current.pause() : audioRef.current.play()
   }
 
   const stopMusic = () => {
     audioRef.current.pause()
   }
 
+  const [isChanging, setIsChanging] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
+  const [progress, setProgress] = useState(0)
   const timeUpdate = (e) => {
+    if (isChanging) return
     setCurrentTime(e.target.currentTime * 1000)
+    setProgress((e.target.currentTime * 1000) / (currentSong?.dt || 0) * 100)
   }
 
-  const formatter = () => {return <span>{formatMinuteSecond(currentTime)}</span>}
+  const sliderChange = useCallback((value) => {
+    setIsChanging(true)
+    const curTime = value / 100 * currentSong?.dt
+    setCurrentTime(curTime)
+    setProgress(value)
+  }, [currentSong?.dt])
+  const sliderAfterChange = useCallback((value) => {
+    const curTime = value / 100 * currentSong?.dt / 1000
+    audioRef.current.currentTime = curTime
+    if (!isPlaying) {
+      audioRef.current.play()
+    }
+    setIsChanging(false)
+  }, [currentSong?.dt, isPlaying])
   return (
     <PlayerBarWrapper>
       <div className="player-content wrap-v1">
         <ControlBtnWrapper>
           <StepBackwardOutlined className='btn btn-prev' onClick={() => stopMusic()} />
-          <PlayCircleOutlined className='btn btn-change' onClick={() => playMusic()} />
+          { isPlaying ? <PauseCircleOutlined className='btn btn-change' onClick={() => playMusic()} /> : 
+            <PlayCircleOutlined className='btn btn-change' onClick={() => playMusic()} /> }
           <StepForwardOutlined className='btn btn-next' />
         </ControlBtnWrapper>
         <PlayerProgressWrapper>
@@ -54,11 +77,12 @@ const PlayerBar = memo(() => {
             </div>
             <div className="progress-bar-wrap">
               <Slider className="progress-bar"
-                value={currentTime / currentSong?.dt * 100 }
-                tooltip={{ formatter }}
-                trackStyle={{backgroundColor: '#c80b0d'}}
+                value={progress}
+                tipFormatter={null}
+                trackStyle={{backgroundColor: '#c80b0d', height: '8px'}}
                 handleStyle={{backgroundColor: '#c80b0d', border: '4px solid #fff'}}
-                draggableTrack={true} />
+                onChange={(e) => sliderChange(e)}
+                onAfterChange={(e) => sliderAfterChange(e)} />
               <span>{formatMinuteSecond(currentTime) || 0}</span>
               <span>/{formatMinuteSecond(currentSong?.dt) || 0}</span>
             </div>
