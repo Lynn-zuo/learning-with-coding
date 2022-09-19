@@ -23,10 +23,10 @@ const PlayerBar = memo(() => {
 
   const [isPlaying, setIsPlaying] = useState(false)
   
-  const playMusic = () => {
+  const playMusic = useCallback(() => {
     setIsPlaying(!isPlaying)
     isPlaying ? audioRef.current.pause() : audioRef.current.play()
-  }
+  }, [isPlaying])
 
   const stopMusic = () => {
     audioRef.current.pause()
@@ -51,10 +51,10 @@ const PlayerBar = memo(() => {
     const curTime = value / 100 * currentSong?.dt / 1000
     audioRef.current.currentTime = curTime
     if (!isPlaying) {
-      audioRef.current.play()
+      playMusic()
     }
     setIsChanging(false)
-  }, [currentSong?.dt, isPlaying])
+  }, [currentSong?.dt, isPlaying, playMusic])
   return (
     <PlayerBarWrapper>
       <div className="player-content wrap-v1">
