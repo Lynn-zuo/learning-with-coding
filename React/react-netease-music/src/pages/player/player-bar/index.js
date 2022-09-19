@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Slider } from 'antd'
 import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined,
          FolderAddOutlined, SelectOutlined, UploadOutlined, PauseCircleOutlined,
@@ -66,9 +67,9 @@ const PlayerBar = memo(() => {
         </ControlBtnWrapper>
         <PlayerProgressWrapper>
           <div className="img-wrapper">
-            <a href="/">
+            <NavLink to="/discover/player">
               <img className='song-cover-img' src={formatSizeImg(currentSong?.al?.picUrl, 35)} alt="cover" />
-            </a>
+            </NavLink>
           </div>
           <div className="song-progress-wrap">
             <div className="song-info">

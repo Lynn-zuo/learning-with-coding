@@ -5,6 +5,7 @@ import RankList from '@/pages/discover/c-pages/rank-list'
 import SongList from '@/pages/discover/c-pages/song-list'
 import Station from '@/pages/discover/c-pages/station'
 import NewDisc from '@/pages/discover/c-pages/new-disc'
+import Player from '@/pages/player'
 const discoverChildren = [{
     index: true,
     element: <Recommend />
@@ -20,6 +21,9 @@ const discoverChildren = [{
 }, {
     path: 'new-disc',
     element: <NewDisc />
+}, {
+    path: 'player',
+    element: <Player />
 }]
 
 export default discoverChildren
