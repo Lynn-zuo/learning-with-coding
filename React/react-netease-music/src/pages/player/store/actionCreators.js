@@ -47,7 +47,7 @@ export const changeSequenceAction = (sequence) => ({
     sequence
 })
 
-export const switchCurrentSong = (tag) => {
+export const changeCurrentIndexAndSongAction = (tag) => {
     return (dispatch, getState) => {
       const sequence = getState().getIn(['player', 'sequence'])
       const playList = getState().getIn(["player", "playList"])

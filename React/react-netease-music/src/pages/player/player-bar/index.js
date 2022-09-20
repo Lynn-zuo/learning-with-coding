@@ -7,7 +7,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { formatSizeImg, formatMinuteSecond, getPlayerSong } from '@/utils/format-utils'
 import bgSpirit from '@/assets/img/bg-spirit.png'
 import bgPopDetail from '@/assets/img/bg-pop-detail.png'
-import { getCurrentSongAction, changeSequenceAction, switchCurrentSong } from '../store/actionCreators'
+import { getCurrentSongAction, changeSequenceAction, changeCurrentIndexAndSongAction } from '../store/actionCreators'
 import { PlayerBarWrapper, ControlBtnWrapper, PlayerProgressWrapper, OperateBtnWrapper } from './style'
 const PlayerBar = memo(() => {
   const { currentSongIndex = 566436427, currentSong = {}, sequence = 0 } = useSelector((state) => ({
@@ -36,7 +36,15 @@ const PlayerBar = memo(() => {
   }, [isPlaying])
 
   const changeMusic = (tag) => {
-    dispatch(switchCurrentSong(tag))
+    dispatch(changeCurrentIndexAndSongAction(tag))
+  }
+  const handleMusicEnded = (e) => {
+    if (sequence === 2) { // 单曲
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    } else {
+      dispatch(changeCurrentIndexAndSongAction(1))
+    }
   }
 
   const [isChanging, setIsChanging] = useState(false)
@@ -116,7 +124,9 @@ const PlayerBar = memo(() => {
           </div>
         </OperateBtnWrapper>
       </div>
-      <audio ref={audioRef} src='' onTimeUpdate={(e) => timeUpdate(e)}></audio>
+      <audio ref={audioRef}
+        onTimeUpdate={(e) => timeUpdate(e)}
+        onEnded={(e) => handleMusicEnded(e)} />
     </PlayerBarWrapper>
   )
 })
