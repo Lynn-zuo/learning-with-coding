@@ -1,5 +1,9 @@
 import reducer from './reducer'
+import { getCurrentSongAction, changePlayListAction, changeSequenceAction } from './actionCreators'
 
 export {
-    reducer
+    reducer,
+    getCurrentSongAction,
+    changePlayListAction,
+    changeSequenceAction
 }

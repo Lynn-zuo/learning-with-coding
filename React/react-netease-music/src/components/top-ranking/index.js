@@ -1,11 +1,23 @@
 import React, { memo } from 'react'
 import { PlayCircleOutlined, FolderAddOutlined, PlusOutlined } from '@ant-design/icons'
 import bgRankImg from '@/assets/img/bg-rank-list.jpg'
-
+import { getCurrentSongAction, changePlayListAction } from '@/pages/player/store'
 import { TopRankingWrapper, HeaderWrapper, ListWrapper, FootWrapper } from './style'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 const TopRanking = memo((props) => {
   const { coverImgUrl, name, tracks = [] } = props.rankInfo
+  const dispatch = useDispatch()
+  const { playList = [], currentSong } = useSelector((state) => ({
+    playList: state.getIn(['player', 'playList']),
+    currentSong: state.getIn(['player', 'currentSong'])
+  }), shallowEqual)
+  const playMusic = (music) => {
+    dispatch(getCurrentSongAction({ids: music.id}))
+    const newPlayList = [...playList]
+    newPlayList.push(currentSong)
+    dispatch(changePlayListAction(newPlayList))
+  }
   return (
     <TopRankingWrapper bgImg={bgRankImg}>
         <HeaderWrapper>
@@ -26,7 +38,7 @@ const TopRanking = memo((props) => {
                 <div className="music-info-line no-wrap">
                   <span className='no-wrap'>{music.name}</span>
                   <div className="operate-line">
-                    <PlayCircleOutlined className='btn btn-play-music' />
+                    <PlayCircleOutlined className='btn btn-play-music' onClick={() => playMusic(music)} />
                     <PlusOutlined className='btn btn-add-music'  />
                     <FolderAddOutlined className='btn btn-add-file'  />
                   </div>
