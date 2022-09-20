@@ -1,21 +1,24 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Slider } from 'antd'
-import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined,
-         FolderAddOutlined, SelectOutlined, UploadOutlined, PauseCircleOutlined,
-         SoundFilled, RetweetOutlined, ContainerOutlined } from '@ant-design/icons'
+import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined, PauseCircleOutlined } from '@ant-design/icons'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+
 import { formatSizeImg, formatMinuteSecond, getPlayerSong } from '@/utils/format-utils'
-import { getCurrentSongAction } from '../store/actionCreators'
+import bgSpirit from '@/assets/img/bg-spirit.png'
+import bgPopDetail from '@/assets/img/bg-pop-detail.png'
+import { getCurrentSongAction, changeSequenceAction } from '../store/actionCreators'
 import { PlayerBarWrapper, ControlBtnWrapper, PlayerProgressWrapper, OperateBtnWrapper } from './style'
 const PlayerBar = memo(() => {
+  const { currentSongIndex = 566436427, currentSong = {}, sequence = 0 } = useSelector((state) => ({
+    currentSongIndex: state.getIn(['player', 'currentSongIndex']),
+    currentSong: state.getIn(['player', 'currentSong']),
+    sequence: state.getIn(['player', 'sequence'])
+  }), shallowEqual)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getCurrentSongAction({ ids: 566436427 }))
-  }, [dispatch])
-  const { currentSong = {} } = useSelector((state) => ({
-    currentSong: state.getIn(['player', 'currentSong'])
-  }), shallowEqual)
+    dispatch(getCurrentSongAction({ ids: currentSongIndex }))
+  }, [dispatch, currentSongIndex])
   
   const audioRef = useRef()
   useEffect(() => {
@@ -56,6 +59,14 @@ const PlayerBar = memo(() => {
     }
     setIsChanging(false)
   }, [currentSong?.dt, isPlaying, playMusic])
+
+  const changeSequence = () => {
+    let curSequence = sequence + 1
+    if (curSequence > 2) {
+      curSequence = 0
+    }
+    dispatch(changeSequenceAction(curSequence))
+  }
   return (
     <PlayerBarWrapper>
       <div className="player-content wrap-v1">
@@ -89,16 +100,16 @@ const PlayerBar = memo(() => {
             </div>
           </div>
         </PlayerProgressWrapper>
-        <OperateBtnWrapper>
+        <OperateBtnWrapper bgSpirit={bgSpirit} bgPopDetail={bgPopDetail} sequence={sequence}>
           <div className="operate-left">
-            <FolderAddOutlined className='btn' />
-            <SelectOutlined className='btn' />
-            <UploadOutlined className='btn' />
+            <span className='btn btn-pop-detail' />
+            <span className='btn btn-add-file' />
+            <span className='btn btn-share' />
           </div>
           <div className="operate-right">
-            <SoundFilled className='btn' />
-            <RetweetOutlined className='btn' />
-            <ContainerOutlined className='btn' />
+            <span className='btn btn-volume' />
+            <span className='btn btn-sequence' onClick={() => changeSequence()} />
+            <span className='btn btn-play-list' />
           </div>
         </OperateBtnWrapper>
       </div>
