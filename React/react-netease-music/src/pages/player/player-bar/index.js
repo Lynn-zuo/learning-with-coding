@@ -7,7 +7,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { formatSizeImg, formatMinuteSecond, getPlayerSong } from '@/utils/format-utils'
 import bgSpirit from '@/assets/img/bg-spirit.png'
 import bgPopDetail from '@/assets/img/bg-pop-detail.png'
-import { getCurrentSongAction, changeSequenceAction } from '../store/actionCreators'
+import { getCurrentSongAction, changeSequenceAction, switchCurrentSong } from '../store/actionCreators'
 import { PlayerBarWrapper, ControlBtnWrapper, PlayerProgressWrapper, OperateBtnWrapper } from './style'
 const PlayerBar = memo(() => {
   const { currentSongIndex = 566436427, currentSong = {}, sequence = 0 } = useSelector((state) => ({
@@ -23,6 +23,9 @@ const PlayerBar = memo(() => {
   const audioRef = useRef()
   useEffect(() => {
     audioRef.current.src = getPlayerSong(currentSong?.id)
+    audioRef.current.play().then(r => {
+      setIsPlaying(true)
+    }).catch(err => {})
   }, [currentSong?.id])
 
   const [isPlaying, setIsPlaying] = useState(false)
@@ -32,8 +35,8 @@ const PlayerBar = memo(() => {
     isPlaying ? audioRef.current.pause() : audioRef.current.play()
   }, [isPlaying])
 
-  const stopMusic = () => {
-    audioRef.current.pause()
+  const changeMusic = (tag) => {
+    dispatch(switchCurrentSong(tag))
   }
 
   const [isChanging, setIsChanging] = useState(false)
@@ -71,10 +74,10 @@ const PlayerBar = memo(() => {
     <PlayerBarWrapper>
       <div className="player-content wrap-v1">
         <ControlBtnWrapper>
-          <StepBackwardOutlined className='btn btn-prev' onClick={() => stopMusic()} />
+          <StepBackwardOutlined className='btn btn-prev' onClick={() => changeMusic(-1)} />
           { isPlaying ? <PauseCircleOutlined className='btn btn-change' onClick={() => playMusic()} /> : 
             <PlayCircleOutlined className='btn btn-change' onClick={() => playMusic()} /> }
-          <StepForwardOutlined className='btn btn-next' />
+          <StepForwardOutlined className='btn btn-next' onClick={() => changeMusic(1)} />
         </ControlBtnWrapper>
         <PlayerProgressWrapper>
           <div className="img-wrapper">

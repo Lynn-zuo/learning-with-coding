@@ -1,22 +1,15 @@
 import React, { memo } from 'react'
 import { PlayCircleOutlined, FolderAddOutlined, PlusOutlined } from '@ant-design/icons'
 import bgRankImg from '@/assets/img/bg-rank-list.jpg'
-import { getCurrentSongAction, changePlayListAction } from '@/pages/player/store'
+import { getCurrentSongAction } from '@/pages/player/store'
 import { TopRankingWrapper, HeaderWrapper, ListWrapper, FootWrapper } from './style'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 const TopRanking = memo((props) => {
   const { coverImgUrl, name, tracks = [] } = props.rankInfo
   const dispatch = useDispatch()
-  const { playList = [], currentSong } = useSelector((state) => ({
-    playList: state.getIn(['player', 'playList']),
-    currentSong: state.getIn(['player', 'currentSong'])
-  }), shallowEqual)
   const playMusic = (music) => {
     dispatch(getCurrentSongAction({ids: music.id}))
-    const newPlayList = [...playList]
-    newPlayList.push(currentSong)
-    dispatch(changePlayListAction(newPlayList))
   }
   return (
     <TopRankingWrapper bgImg={bgRankImg}>
