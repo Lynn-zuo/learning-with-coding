@@ -1,19 +1,23 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Slider } from 'antd'
+import { Slider, message } from 'antd'
 import { StepBackwardOutlined, PlayCircleOutlined, StepForwardOutlined, PauseCircleOutlined } from '@ant-design/icons'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { formatSizeImg, formatMinuteSecond, getPlayerSong } from '@/utils/format-utils'
 import bgSpirit from '@/assets/img/bg-spirit.png'
 import bgPopDetail from '@/assets/img/bg-pop-detail.png'
-import { getCurrentSongAction, changeSequenceAction, changeCurrentIndexAndSongAction } from '../store/actionCreators'
+import { getCurrentSongAction, changeSequenceAction, changeCurrentIndexAndSongAction, changeLyricINdexAction } from '../store/actionCreators'
 import { PlayerBarWrapper, ControlBtnWrapper, PlayerProgressWrapper, OperateBtnWrapper } from './style'
+
 const PlayerBar = memo(() => {
-  const { currentSongIndex = 566436427, currentSong = {}, sequence = 0 } = useSelector((state) => ({
+  const { currentSongIndex = 566436427, currentSong = {},
+          sequence = 0, lyricList = [], currentLyricIndex = 0 } = useSelector((state) => ({
     currentSongIndex: state.getIn(['player', 'currentSongIndex']),
     currentSong: state.getIn(['player', 'currentSong']),
-    sequence: state.getIn(['player', 'sequence'])
+    sequence: state.getIn(['player', 'sequence']),
+    lyricList: state.getIn(['player', 'lyricList']),
+    currentLyricIndex: state.getIn(['player', 'currentLyricIndex'])
   }), shallowEqual)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -52,8 +56,29 @@ const PlayerBar = memo(() => {
   const [progress, setProgress] = useState(0)
   const timeUpdate = (e) => {
     if (isChanging) return
-    setCurrentTime(e.target.currentTime * 1000)
-    setProgress((e.target.currentTime * 1000) / (currentSong?.dt || 0) * 100)
+    const curTime = e.target.currentTime * 1000
+    setCurrentTime(curTime)
+    setProgress(curTime * 1000 / (currentSong?.dt || 0) * 100)
+
+    // 获取当前的歌词
+    let i = 0
+    for (i=0; i<lyricList.length; i++) {
+      const lyricItem = lyricList[i]
+      if (curTime < lyricItem['time']) {
+        break
+      }
+    }
+    const curLyricIndex = i - 1
+    if (currentLyricIndex !== curLyricIndex) {
+      dispatch(changeLyricINdexAction(curLyricIndex))
+      const content = lyricList[curLyricIndex]?.content
+      message.open({
+        key: 'lyric',
+        content,
+        duration: 0,
+        className: 'lyric-style'
+      })
+    }
   }
 
   const sliderChange = useCallback((value) => {

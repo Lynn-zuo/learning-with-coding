@@ -92,8 +92,12 @@ export const getLyricAction = (curSongIndex) => {
         api.Player.getLyric({id: curSongIndex}).then(res => {
             const lyrStr = res.lrc.lyric
             const lyrics = parseLyric(lyrStr)
-            console.log(lyrics, '-----lyrics')
             dispatch(changeLyricListAction(lyrics))
         })
     }
 }
+
+export const changeLyricINdexAction = (currentLyricIndex) => ({
+    type: actionTypes.CHANGE_LYRIC_INDEX,
+    currentLyricIndex
+})
