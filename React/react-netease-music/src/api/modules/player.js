@@ -7,3 +7,9 @@ export const getSongDetail = (params) => {
     return res
   })
 }
+
+export const getLyric = (params) => {
+    return gatewayAPI.get("/lyric", { params }).then((res) => {
+        return res
+      })
+}
