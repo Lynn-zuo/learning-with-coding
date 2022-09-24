@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, Suspense} from 'react';
 import Router from '@/router/index'
 import { HashRouter } from 'react-router-dom';
 import store from '@/store/index.js';
@@ -13,7 +13,9 @@ export default memo(function App() {
     <Provider store={store}>
       <HashRouter>
         <XAppHeader />
-        <Router />
+        <Suspense fallback={<div>page loading</div>}>
+          {<Router />}
+        </Suspense>
         <XAppFooter />
         <PlayerBar />
       </HashRouter>

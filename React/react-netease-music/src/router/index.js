@@ -1,12 +1,13 @@
+import React from 'react'
 import { Navigate, useRoutes } from 'react-router-dom';
-
-import Discover from '@/pages/discover';
 import discoverChildren from './discoverChildren';
-import Friend from '@/pages/friend';
-import Mine from '@/pages/mine';
-import Download from '@/pages/download';
-import Login from '@/pages/login';
-import NotFound from '@/pages/404';
+// 路由懒加载
+const Discover = React.lazy(_ => import('@/pages/discover'));
+const Friend = React.lazy(_ => import('@/pages/friend'));
+const Mine = React.lazy(_ => import('@/pages/mine'));
+const Download = React.lazy(_ => import('@/pages/download'));
+const Login = React.lazy(_ => import('@/pages/login'));
+const NotFound = React.lazy(_ => import('@/pages/404'));
 
 const routes = [{
     path: '/',
